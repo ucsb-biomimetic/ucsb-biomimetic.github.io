@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nikhil Kapasi - Computer Engineering Student</title>
+    <title>Biomimetic Circuits & Nanosystems Group</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,18 +36,21 @@
         .initials-container {
             display: flex;
             font-family: 'Playfair Display', serif;
-            font-size: 10rem;
+            font-size: 8rem; /* Adjusted for three letters */
             color: white;
         }
         .initial {
             animation: fall 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
             opacity: 0;
         }
-        .initial-n {
+        .initial-b {
             animation-delay: 0.2s;
         }
-        .initial-k {
+        .initial-c {
             animation-delay: 0.5s;
+        }
+        .initial-n {
+            animation-delay: 0.8s;
         }
         @keyframes fall {
             0% {
@@ -64,15 +67,20 @@
         }
     </style>
     <script>
+        // Tailwind CSS configuration with the new color palette
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        'background': '#F8F9FA',
+                        'background': '#FFFFFF',
+                        'section-bg': '#F8F9FA', // A very light grey for alternating sections
                         'card': '#FFFFFF',
-                        'text-primary': '#212529',
-                        'text-secondary': '#6c757d',
-                        'accent': '#0ABAB5',
+                        'text-primary': '#2F4858',      // Charcoal
+                        'text-secondary': '#33658A',   // Lapis Lazuli
+                        'accent': '#F6AE2D',           // Hunyadi yellow
+                        'accent-dark': '#F26419',      // Orange (Pantone)
+                        'accent-light': '#55DDE0',     // Robin egg blue
+                        'footer-bg': '#2F4858',         // Charcoal
                         'border-color': '#E9ECEF',
                     }
                 }
@@ -82,11 +90,12 @@
 </head>
 <body class="bg-background text-text-primary">
 
-    <!-- Preloader -->
-    <div id="preloader" class="preloader bg-accent">
+    <!-- Preloader with new accent color -->
+    <div id="preloader" class="preloader bg-accent-light">
         <div class="initials-container">
+            <span class="initial initial-b">B</span>
+            <span class="initial initial-c">C</span>
             <span class="initial initial-n">N</span>
-            <span class="initial initial-k">K</span>
         </div>
     </div>
 
@@ -95,583 +104,178 @@
         <!-- Navigation Bar -->
         <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-sm border-b border-border-color shadow-sm">
             <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-                <a href="#hero" class="text-lg font-semibold text-text-primary tracking-wider hover:text-accent transition-colors">Nikhil Kapasi</a>
+                <a href="#hero" class="text-md font-semibold text-text-primary tracking-wider hover:text-accent transition-colors">BIOMIMETIC CIRCUITS & NANOSYSTEMS</a>
                 <div class="hidden md:flex space-x-8">
                     <a href="#research" class="text-text-secondary hover:text-accent transition-colors duration-300">Research</a>
-                    <a href="#publications" class="text-text-secondary hover:text-accent transition-colors duration-300">Publications</a>
-                    <a href="#teaching" class="text-text-secondary hover:text-accent transition-colors duration-300">Teaching</a>
-                    <a href="#work" class="text-text-secondary hover:text-accent transition-colors duration-300">Work</a>
-                    <a href="#volunteering" class="text-text-secondary hover:text-accent transition-colors duration-300">Volunteering</a>
                     <a href="#projects" class="text-text-secondary hover:text-accent transition-colors duration-300">Projects</a>
-                    <a href="#awards" class="text-text-secondary hover:text-accent transition-colors duration-300">Awards</a>
-                    <a href="#coursework" class="text-text-secondary hover:text-accent transition-colors duration-300">Coursework</a>
+                    <a href="#publications" class="text-text-secondary hover:text-accent transition-colors duration-300">Publications</a>
+                    <a href="#people" class="text-text-secondary hover:text-accent transition-colors duration-300">People</a>
                 </div>
                  <a href="#contact" class="hidden md:inline-block border border-accent text-accent px-4 py-2 rounded-md text-sm font-medium hover:bg-accent hover:text-white transition-colors">Contact</a>
             </div>
         </nav>
 
         <!-- Hero Section -->
-        <section id="hero" class="min-h-screen flex justify-center items-center p-8">
-            <div class="container mx-auto flex flex-col md:flex-row items-center justify-center gap-12">
-                <!-- Headshot -->
-                <div class="w-40 h-40 md:w-48 md:h-48 flex-shrink-0">
-                    <img src="headshot.jpeg" alt="Nikhil Kapasi Headshot" class="w-full h-full object-cover rounded-full shadow-md border border-border-color">
+        <section id="hero" class="min-h-screen flex justify-center items-center p-8 bg-white">
+            <div class="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-12">
+                <!-- Hero Image -->
+                <div class="w-full lg:w-1/2 flex-shrink-0">
+                    <img src="https://placehold.co/800x600/55DDE0/FFFFFF?text=Research+Image" alt="Biomimetic Circuits Research" class="w-full h-auto object-cover rounded-lg shadow-md border border-border-color">
                 </div>
                 <!-- Text Content -->
-                <div class="text-center md:text-left max-w-xl">
-                    <h1 class="text-4xl md:text-5xl font-bold text-text-primary mb-2 tracking-tight">Nikhil Kapasi</h1>
-                    <h2 class="text-lg md:text-xl font-medium text-accent mb-4 tracking-wide">Computer Engineering @ UCSB ECE</h2>
+                <div class="text-center lg:text-left max-w-xl lg:w-1/2">
+                    <h1 class="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">Overview of Our Research</h1>
                     <p class="text-md md:text-lg text-text-secondary mb-6">
-                        Computer Engineering student with a strong foundation in VLSI, FPGA programming, and digital design. Experienced in hardware-software co-design for machine learning through projects involving high-level synthesis and deep learning hardware accelerators.
+                        Our research lies at the intersection of electronics, photonics, soft-matter and biology. Our group consists of a diverse mix of disciplines such as Physics, Chemistry, Biology and Electrical Engineering. Our fundamental goal is to help people by using cutting edge research. Our lab has three focus areas: Soft Matter, Electronics, and Neuroscience.
                     </p>
-                    <div class="flex justify-center md:justify-start space-x-6">
-                        <a href="mailto:nik.kapasi@gmail.com" class="text-text-secondary hover:text-accent transition-all duration-300 text-xl">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/nikhil-kapasi" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-accent transition-all duration-300 text-xl">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://github.com/nikhilkapasi" target="_blank" rel="noopener noreferrer" class="text-text-secondary hover:text-accent transition-all duration-300 text-xl">
-                            <i class="fab fa-github"></i>
+                    <div class="flex justify-center lg:justify-start space-x-4">
+                         <a href="#research" class="bg-accent text-white px-6 py-3 rounded-md font-semibold hover:bg-accent-dark transition-colors">
+                            Explore Research
                         </a>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Primary Research Areas Section -->
+        <section id="research" class="py-24 px-8 bg-section-bg">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Primary Research Areas</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Soft Matter Card -->
+                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm text-center">
+                        <img src="https://placehold.co/400x300/33658A/FFFFFF?text=Soft+Matter" alt="Soft Matter" class="w-full h-48 object-cover rounded-md mb-6 mx-auto">
+                        <h3 class="text-xl font-semibold text-text-primary mb-2">Soft Matter</h3>
+                        <p class="text-text-secondary">Our group explores the interaction between self-assembling polymer membranes and proteins. We perform polymer synthesis and characterization, physical-chemical and protein-inversion studies. Our goal is to design and develop novel polymers for bio-sensing applications.</p>
+                    </div>
+                    <!-- Electronics Card -->
+                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm text-center">
+                        <img src="https://placehold.co/400x300/33658A/FFFFFF?text=Electronics" alt="Electronics" class="w-full h-48 object-cover rounded-md mb-6 mx-auto">
+                        <h3 class="text-xl font-semibold text-text-primary mb-2">Electronics</h3>
+                        <p class="text-text-secondary">We have two complementary thrusts in electronics: 1) Ultra-low power mixed-signal circuit design for biosensors and 2) High-performance mixed-signal for control and stabilization of photonic ICs. We specialize in PLLs, DLLs, low-noise analog front-end amplifiers, sigma-delta ADCs, and novel signal control loops.</p>
+                    </div>
+                    <!-- Neuroscience Card -->
+                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm text-center">
+                        <img src="https://placehold.co/400x300/33658A/FFFFFF?text=Neuroscience" alt="Neuroscience" class="w-full h-48 object-cover rounded-md mb-6 mx-auto">
+                        <h3 class="text-xl font-semibold text-text-primary mb-2">Neuroscience</h3>
+                        <p class="text-text-secondary">We approach neuroscience from two perspectives: neural prosthesis and neural computation. We develop new methods to sense and record neural signals. We also study neural circuits in-vitro to understand how neural computations are performed. Another facet of research is to develop in-silico models of neural computation and design neuromorphic computing ICs based on these models.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <!-- Sections Wrapper -->
-        <div class="bg-card">
-        
-        <!-- Research Section -->
-        <section id="research" class="py-24 px-8">
-            <div class="container mx-auto max-w-5xl">
-                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Research Experience</h2>
-                <div class="space-y-12">
-                    <!-- Biomimetic Circuits and Nanosystems Group -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm">
-                        <h3 class="text-xl font-semibold text-text-primary mb-1">Biomimetic Circuits & Nanosystems Group</h3>
-                        <p class="text-text-secondary mb-2">Advised by Dr. Luke Theogarajan</p>
-                        <p class="text-sm text-accent mb-4">September 2023 - Present</p>
-                        <div class="text-text-secondary space-y-4">
-                            <div>
-                                <h4 class="font-semibold text-text-primary">Project: Biophysically accurate neuron modeling using probabilistic computing methods</h4>
-                                <ul class="list-disc pl-5 space-y-1 mt-2">
-                                    <li>Implemented FPGA based Boltzmann Machines (RBMs, RTRMBs) using High-Level Synthesis in C++ and SystemVerilog.</li>
-                                    <li>Trained Boltzmann Machines using Contrastive Divergence and Hebbian Learning facilitating hardware-based biophysically accurate neuron simulations for scientific modeling.</li>
-                                    <li>Utilizing and applying statistical physics models and techniques like the Potts Model for the training and testing of neural models.</li>
-                                    <li>Mapping the compartmental neuron model for accurate independent dendrite, soma, and axon models, enabling the representation of complex non-linearities within a single neuron.</li>
-                                </ul>
-                            </div>
-                            <div>
-                                <h4 class="font-semibold text-text-primary">Project: Hardware Implemented PDE/ODE solver for Scientific Computing</h4>
-                                <ul class="list-disc pl-5 space-y-1 mt-2">
-                                    <li>Hardware implemented PDE/ODE solver for scientific computing using Verilog digital design.</li>
-                                    <li>Implemented FPGA based Range Kutta Method PDE solver for scientific computing.</li>
-                                    <li>Researched possible hardware speedups through C++ High Level Synthesis.</li>
-                                    <li>Experimented with Graph Neural Networks and Message passing on dynamic graphs such as the neuron network graph.</li>
-                                    <li>Built a FPGA implemented attractor neural network (Hopfield Network) which led to the future probabilistic implementation of the neuron model.</li>
-                                </ul>
-                            </div>
+        <!-- Current Projects Section -->
+        <section id="projects" class="py-24 px-8 bg-white">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Current Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Project Card -->
+                    <div class="bg-card rounded-lg border border-border-color shadow-sm overflow-hidden">
+                        <img src="https://placehold.co/400x300/F26419/FFFFFF?text=Packaging" alt="Packaging Project" class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-text-primary">Packaging</h3>
                         </div>
                     </div>
-                     <!-- Computer Science Embedded Ethics -->
-                     <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm">
-                        <h3 class="text-xl font-semibold text-text-primary mb-1">Computer Science Embedded Ethics in Computer Science Group</h3>
-                        <p class="text-text-secondary mb-2">Advised by Dr. Majedi</p>
-                        <p class="text-sm text-accent mb-4">January 2024 - Present</p>
-                        <div class="text-text-secondary space-y-4">
-                            <div>
-                                <h4 class="font-semibold text-text-primary">Project: Embedded Ethics Assignments</h4>
-                            </div>
+                     <!-- Project Card -->
+                    <div class="bg-card rounded-lg border border-border-color shadow-sm overflow-hidden">
+                        <img src="https://placehold.co/400x300/F26419/FFFFFF?text=Fluidics" alt="Fluidics Project" class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-text-primary">Fluidics</h3>
                         </div>
                     </div>
-                    <!-- UCSB Early Research Scholars Program -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm">
-                        <h3 class="text-xl font-semibold text-text-primary mb-1">UCSB Early Research Scholars Program</h3>
-                        <p class="text-text-secondary mb-2">Advised by Dr. Giovanni Vigna and Dr. Christopher Kruegel</p>
-                        <p class="text-sm text-accent mb-4">September 2023 - June 2024</p>
-                        <div class="text-text-secondary space-y-2">
-                            <h4 class="font-semibold text-text-primary">Project: Novel reproducible format for Common Vulnerability Exposures through Dockerization</h4>
-                            <ul class="list-disc pl-5 space-y-1 mt-2">
-                                <li>Developed a novel CVEX framework for reproducible CVE recreation using Docker.</li>
-                                <li>Analyzed CVE statistics and tools in containerized vulnerable environments.</li>
-                                <li>Leveraged JavaScript, Python, and Docker to build a collaborative sharing platform.</li>
-                            </ul>
+                     <!-- Project Card -->
+                    <div class="bg-card rounded-lg border border-border-color shadow-sm overflow-hidden">
+                        <img src="https://placehold.co/400x300/F26419/FFFFFF?text=Stochastic+Computing" alt="Stochastic Computing Project" class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-text-primary">Stochastic Computing</h3>
                         </div>
                     </div>
-                    <!-- Research Intern -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm">
-                        <h3 class="text-xl font-semibold text-text-primary mb-1">Research Intern</h3>
-                        <p class="text-text-secondary mb-2">University of California, Santa Cruz (SIP)</p>
-                        <p class="text-sm text-accent mb-4">May 2021 - August 2021</p>
-                        <div class="text-text-secondary space-y-2">
-                            <ul class="list-disc pl-5 space-y-1 mt-2">
-                                <li>Collaborated with a Ph.D. candidate mentor to investigate protein interactions within bacterial cells.</li>
-                                <li>Enhanced research techniques and presentation abilities through active participation.</li>
-                                <li>Utilized a protein analysis software called APE to advance my programming skills and enhance proficiency in data analysis.</li>
-                            </ul>
+                     <!-- Project Card -->
+                    <div class="bg-card rounded-lg border border-border-color shadow-sm overflow-hidden">
+                        <img src="https://placehold.co/400x300/F26419/FFFFFF?text=Sensors" alt="Sensors Project" class="w-full h-40 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-lg font-semibold text-text-primary">Sensors</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        
+
         <!-- Publications Section -->
-        <section id="publications" class="py-24 px-8 bg-background">
+        <section id="publications" class="py-24 px-8 bg-section-bg">
             <div class="container mx-auto max-w-5xl">
                 <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Publications</h2>
-                <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm">
-                    <a href="https://arxiv.org/html/2505.11635v1" target="_blank" rel="noopener noreferrer" class="hover:text-accent">
-                        <h3 class="text-xl font-semibold text-text-primary mb-2 hover:text-accent transition-colors">The Gaussian-Multinoulli Restricted Boltzmann Machine: A Potts Model Extension of the GRBM</h4>
-                    </a>
-                    <p class="text-text-secondary">Authors: Nikhil Kapasi, William Whitehead, Luke Theogarajan</p>
+                <div class="space-y-8">
+                    <!-- Publication Item -->
+                    <div class="bg-card p-6 rounded-lg border border-border-color shadow-sm">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-accent-dark">
+                            <h3 class="text-xl font-semibold text-text-primary mb-2 hover:text-accent-dark transition-colors">Example Publication Title About Nanosystems</h3>
+                        </a>
+                        <p class="text-text-secondary mb-2">Author A, Author B, Author C - Journal of Bionano Science (2025)</p>
+                        <p class="text-text-secondary text-sm">A brief abstract or description of the paper would go here, highlighting the key findings and contributions of the research.</p>
+                    </div>
+                    <!-- Publication Item -->
+                    <div class="bg-card p-6 rounded-lg border border-border-color shadow-sm">
+                        <a href="#" target="_blank" rel="noopener noreferrer" class="hover:text-accent-dark">
+                            <h3 class="text-xl font-semibold text-text-primary mb-2 hover:text-accent-dark transition-colors">Another Paper on Biomimetic Circuits</h3>
+                        </a>
+                        <p class="text-text-secondary mb-2">Author D, Author E, Author F - Proceedings of Advanced Materials (2024)</p>
+                        <p class="text-text-secondary text-sm">This paper discusses the novel design and application of biomimetic circuits for advanced sensory processing.</p>
+                    </div>
                 </div>
             </div>
         </section>
-        
-        <!-- Teaching Experience Section -->
-        <section id="teaching" class="py-24 px-8">
+
+        <!-- People Section -->
+        <section id="people" class="py-24 px-8 bg-white">
             <div class="container mx-auto max-w-6xl">
-                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Teaching Experience</h2>
-                <div class="flex overflow-x-auto space-x-8 pb-4">
-                    <!-- Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-96">
-                        <h3 class="text-lg font-semibold text-text-primary">ULA: CMPSC 24</h3>
-                        <p class="text-text-secondary">Data Structures & Classes in C++</p>
-                        <p class="text-sm text-text-secondary mt-1 mb-2">Supervisor: Prof. Diba Mirza</p>
-                        <p class="text-sm text-accent">Apr 2025 - Present</p>
+                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Our Team</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                    <!-- Team Member Card -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Team Member" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
+                        <h3 class="text-lg font-semibold text-text-primary">Dr. Lead Researcher</h3>
+                        <p class="text-accent">Principal Investigator</p>
                     </div>
-                    <!-- Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-96">
-                        <h3 class="text-lg font-semibold text-text-primary">ULA: CMPSC 16</h3>
-                        <p class="text-text-secondary">Introduction to C++</p>
-                        <p class="text-sm text-text-secondary mt-1 mb-2">Supervisor: Prof. Maryam Majedi</p>
-                        <p class="text-sm text-accent">Jan 2025 - Apr 2025</p>
+                    <!-- Team Member Card -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Team Member" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
+                        <h3 class="text-lg font-semibold text-text-primary">Postdoc Fellow</h3>
+                        <p class="text-text-secondary">Postdoctoral Researcher</p>
                     </div>
-                    <!-- Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-96">
-                        <h3 class="text-lg font-semibold text-text-primary">ULA: CMPSC 8</h3>
-                        <p class="text-text-secondary">Introduction to Python</p>
-                        <p class="text-sm text-text-secondary mt-1 mb-2">Supervisor: Prof. Diba Mirza</p>
-                        <p class="text-sm text-accent">Sep 2024 - Dec 2024</p>
+                    <!-- Team Member Card -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Team Member" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
+                        <h3 class="text-lg font-semibold text-text-primary">PhD. Candidate</h3>
+                        <p class="text-text-secondary">Graduate Student</p>
                     </div>
-                    <!-- Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-96">
-                        <h3 class="text-lg font-semibold text-text-primary">ULA: CMPSC 8</h3>
-                        <p class="text-text-secondary">Introduction to Python</p>
-                        <p class="text-sm text-text-secondary mt-1 mb-2">Supervisor: Prof. Diba Mirza</p>
-                        <p class="text-sm text-accent">Jul 2024 - Sep 2024</p>
-                    </div>
-                    <!-- Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-96">
-                        <h3 class="text-lg font-semibold text-text-primary">ULA: CMPSC 32</h3>
-                        <p class="text-text-secondary">Object Oriented Programming in C++</p>
-                        <p class="text-sm text-text-secondary mt-1 mb-2">Supervisor: Prof. Ziad Matni</p>
-                        <p class="text-sm text-accent">Apr 2024 - Jun 2024</p>
-                    </div>
-                    <!-- Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-96">
-                        <h3 class="text-lg font-semibold text-text-primary">ULA: CMPSC 16</h3>
-                        <p class="text-text-secondary">Introduction to C++</p>
-                        <p class="text-sm text-text-secondary mt-1 mb-2">Supervisor: Prof. Maryam Majedi</p>
-                        <p class="text-sm text-accent">Jan 2024 - Apr 2024</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Work Experience Section -->
-        <section id="work" class="py-24 px-8 bg-background">
-            <div class="container mx-auto max-w-5xl">
-                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Work Experience</h2>
-                <div class="flex overflow-x-auto space-x-8 pb-4">
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[480px]">
-                        <div class="flex items-start space-x-6">
-                            <img src="HRL-LOGO.png" alt="HRL Laboratories Logo" class="w-16 h-16 object-contain rounded-md">
-                            <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-text-primary mb-1">Incoming RF Applications Intern</h3>
-                                <p class="text-text-secondary mb-2">HRL Laboratories</p>
-                                <p class="text-sm text-accent mb-4">Upcoming</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[480px]">
-                         <div class="flex items-start space-x-6 mb-4">
-                            <img src="PHYGTL-LOGO.png" alt="Phygtl Logo" class="w-16 h-16 object-contain rounded-md">
-                            <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-text-primary mb-1">Product Manager</h3>
-                                <p class="text-text-secondary mb-2">Phygtl (Startup)</p>
-                                <p class="text-sm text-accent">August 2023 - September 2024</p>
-                            </div>
-                        </div>
-                        <ul class="list-disc pl-5 text-text-secondary space-y-1">
-                            <li>Collaborated closely with the CEO/Founder to shape product strategy and vision.</li>
-                            <li>Translated the vision into low-fidelity prototypes using Figma, facilitating user experience design and product conceptualization.</li>
-                            <li>Communicated product development roadmap, consisting of EPICs and user stories aligned with strategic objectives.</li>
-                            <li>Managed Jira task board, sprint planning, and the product backlog, ensuring efficient project tracking and execution.</li>
-                            <li>Led customer discovery initiatives and orchestrated product testing phases to gather valuable feedback.</li>
-                        </ul>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[480px]">
-                        <div class="flex items-start space-x-6 mb-4">
-                            <img src="PHYGTL-LOGO.png" alt="Phygtl Logo" class="w-16 h-16 object-contain rounded-md">
-                            <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-text-primary mb-1">Product Researcher</h3>
-                                <p class="text-text-secondary mb-2">Phygtl (Startup)</p>
-                                <p class="text-sm text-accent">January 2023 - August 2023</p>
-                            </div>
-                        </div>
-                        <ul class="list-disc pl-5 text-text-secondary space-y-1">
-                            <li>Played a pivotal role as a core team member, focusing on business intelligence and product research.</li>
-                            <li>Successfully oversaw customer discovery efforts, collecting feedback from 3 target demographic student groups per week.</li>
-                            <li>Led product design efforts and transformed feedback into actionable improvements, ensuring enhanced user experiences.</li>
-                            <li>Conducted comprehensive technical research to inform and guide product implementation strategies.</li>
-                        </ul>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[480px]">
-                        <div class="flex items-start space-x-6 mb-4">
-                            <div class="w-16 h-16 bg-border-color rounded-md flex items-center justify-center text-text-secondary flex-shrink-0">Logo</div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-text-primary mb-1">Social Media And Outreach Coordinator</h3>
-                                <p class="text-text-secondary mb-2">Eating Disorders Resource Center</p>
-                                <p class="text-sm text-accent">July 2018 - February 2023</p>
-                            </div>
-                        </div>
-                        <ul class="list-disc pl-5 text-text-secondary space-y-1">
-                            <li>Leading member of EDRC Student Action Committee, dedicated to promoting eating disorder awareness.</li>
-                            <li>Responsible for strategy and content planning on LinkedIn, Facebook, Instagram, and Twitter.</li>
-                            <li>Conducted interviews, recruitment, and comprehensive training for student volunteers.</li>
-                            <li>Oversaw project allocation, management, and progress tracking within EDRC.</li>
-                        </ul>
-                    </div>
-                     <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[480px]">
-                        <div class="flex items-start space-x-6 mb-4">
-                            <div class="w-16 h-16 bg-border-color rounded-md flex items-center justify-center text-text-secondary flex-shrink-0">Logo</div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-text-primary mb-1">Marketing Intern</h3>
-                                <p class="text-text-secondary mb-2">SEQUOIA APPAREL INC</p>
-                                <p class="text-sm text-accent">September 2018 - June 2019</p>
-                            </div>
-                        </div>
-                         <ul class="list-disc pl-5 text-text-secondary space-y-1">
-                            <li>Conducted market research for winter jackets and ski-wear.</li>
-                            <li>Worked with Adobe publisher to create mock-ups and design catalog layouts.</li>
-                        </ul>
+                    <!-- Team Member Card -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Team Member" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
+                        <h3 class="text-lg font-semibold text-text-primary">Research Assistant</h3>
+                        <p class="text-text-secondary">Undergraduate Researcher</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Volunteering Section -->
-        <section id="volunteering" class="py-24 px-8">
-            <div class="container mx-auto max-w-5xl">
-                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Volunteering Experience</h2>
-                <div class="flex overflow-x-auto space-x-8 pb-4">
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[480px]">
-                        <div class="flex items-start space-x-6">
-                            <div class="w-16 h-16 bg-border-color rounded-md flex items-center justify-center text-text-secondary flex-shrink-0">Logo</div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-text-primary mb-1">Student Member</h3>
-                                <p class="text-text-secondary mb-2">Undergraduate Affairs Committee Computer Science</p>
-                                <p class="text-sm text-accent mb-4">Ongoing</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[480px]">
-                        <div class="flex items-start space-x-6">
-                            <div class="w-16 h-16 bg-border-color rounded-md flex items-center justify-center text-text-secondary flex-shrink-0">Logo</div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-text-primary mb-1">Vice President</h3>
-                                <p class="text-text-secondary mb-2">Lemon Club at UCSB</p>
-                                <p class="text-sm text-accent mb-4">Ongoing</p>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[480px]">
-                        <div class="flex items-start space-x-6 mb-4">
-                            <div class="w-16 h-16 bg-border-color rounded-md flex items-center justify-center text-text-secondary flex-shrink-0">Logo</div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-text-primary mb-1">Administrative Chair</h3>
-                                <p class="text-text-secondary mb-2">UC Santa Barbara TQC</p>
-                                <p class="text-sm text-accent">June 2024 - Present</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[480px]">
-                        <div class="flex items-start space-x-6 mb-4">
-                             <div class="w-16 h-16 bg-border-color rounded-md flex items-center justify-center text-text-secondary flex-shrink-0">Logo</div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-text-primary mb-1">Special Projects Commissioner</h3>
-                                <p class="text-text-secondary mb-2">UC Santa Barbara TQC</p>
-                                <p class="text-sm text-accent">September 2023 - June 2024</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[480px]">
-                        <div class="flex items-start space-x-6 mb-4">
-                            <div class="w-16 h-16 bg-border-color rounded-md flex items-center justify-center text-text-secondary flex-shrink-0">Logo</div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-text-primary mb-1">Director - Choir</h3>
-                                <p class="text-text-secondary mb-2">Music Education with Saratoga High</p>
-                                <p class="text-sm text-accent">August 2019 - June 2022</p>
-                            </div>
-                        </div>
-                        <p class="text-text-secondary">Managed the choir branch of the MESH program. Helped organize yearly concert, volunteer schedules and helped teach choir students at Redwood Middle School.</p>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[480px]">
-                        <div class="flex items-start space-x-6 mb-4">
-                             <div class="w-16 h-16 bg-border-color rounded-md flex items-center justify-center text-text-secondary flex-shrink-0">Logo</div>
-                            <div class="flex-1">
-                                <h3 class="text-xl font-semibold text-text-primary mb-1">Director - Color Guard</h3>
-                                <p class="text-text-secondary mb-2">Music Education with Saratoga High</p>
-                                <p class="text-sm text-accent">August 2019 - June 2022</p>
-                            </div>
-                        </div>
-                        <p class="text-text-secondary">Managed the color guard branch of the MESH program. Helped organize yearly concert, volunteer schedules and helped teach choir students at Redwood Middle School.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projects Section -->
-        <section id="projects" class="py-24 px-8 bg-background">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Projects</h2>
-                <div class="flex overflow-x-auto space-x-8 pb-4">
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[520px]">
-                        <h3 class="text-xl font-semibold text-text-primary mb-3">Sixteen Point FFT CMOS Chip</h3>
-                        <p class="text-text-secondary mb-4">
-                            Implemented and tested a 16-point, 8-bit FFT chip using Skywater 130nm PDK.
-                        </p>
-                        <div class="mt-4">
-                            <a href="VSLI-FFT-PRES.pdf" download class="inline-block bg-accent text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity">
-                                Download PDF
-                            </a>
-                        </div>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[520px]">
-                        <h3 class="text-xl font-semibold text-text-primary mb-3">Embedded Garage Door Controller</h3>
-                        <p class="text-text-secondary">
-                            Developed a prototype garage door system using an STM32 microcontroller and various sensors.
-                        </p>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[520px]">
-                        <h3 class="text-xl font-semibold text-text-primary mb-3">Stock Prediction with Deep Learning</h3>
-                        <p class="text-text-secondary mb-4">
-                            Developed a deep learning model to predict stock market trends.
-                        </p>
-                        <div class="mt-4">
-                            <a href="placeholder.pdf" download class="inline-block bg-accent text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity">
-                                Download PDF
-                            </a>
-                        </div>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[520px]">
-                        <h3 class="text-xl font-semibold text-text-primary mb-3">Modeling Addiction with Reinforcement Learning</h3>
-                        <p class="text-text-secondary mb-4">
-                            Created a reinforcement learning agent to model addictive behaviors.
-                        </p>
-                        <div class="mt-4">
-                            <a href="ADDICTION-RL.pdf" download class="inline-block bg-accent text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity">
-                            Download PDF
-                            </a>
-                        </div>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[520px]">
-                        <h3 class="text-xl font-semibold text-text-primary mb-3">Future Directions in Adversarial Machine Learning</h3>
-                        <p class="text-text-secondary mb-4">
-                            A review of current and future techniques in adversarial machine learning.
-                        </p>
-                        <div class="mt-4">
-                            <a href="placeholder.pdf" download class="inline-block bg-accent text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity">
-                            Download PDF
-                            </a>
-                        </div>
-                    </div>
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm flex-shrink-0 w-full md:w-[520px]">
-                        <h3 class="text-xl font-semibold text-text-primary mb-3">A Disease-Drug-Protein Network for Disease Digital Twins</h3>
-                        <p class="text-text-secondary mb-4">
-                            Exploring the use of network graphs for creating digital twins in disease modeling.
-                        </p>
-                        <div class="mt-4">
-                            <a href="placeholder.pdf" download class="inline-block bg-accent text-white px-4 py-2 rounded-md text-sm font-medium hover:opacity-90 transition-opacity">
-                            Download PDF
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Awards Section -->
-        <section id="awards" class="py-24 px-8">
-            <div class="container mx-auto max-w-5xl">
-                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Awards</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-center">
-                    <div class="bg-card p-6 rounded-lg border border-border-color shadow-sm">
-                        <p class="font-semibold text-text-primary">Jayson Chang Memorial Scholarship</p>
-                        <p class="text-sm text-accent mt-1">Saratoga High School 2022</p>
-                    </div>
-                    <div class="bg-card p-6 rounded-lg border border-border-color shadow-sm">
-                        <p class="font-semibold text-text-primary">President's Volunteer Service Award</p>
-                        <p class="text-sm text-accent mt-1">Points of Light Foundation 2021 & 2022</p>
-                    </div>
-                    <div class="bg-card p-6 rounded-lg border border-border-color shadow-sm">
-                        <p class="font-semibold text-text-primary">President's Education Award</p>
-                        <p class="text-sm text-accent mt-1">Saratoga High School 2022</p>
-                    </div>
-                    <div class="bg-card p-6 rounded-lg border border-border-color shadow-sm">
-                        <p class="font-semibold text-text-primary">Santa Clara County Young Mover's Award</p>
-                        <p class="text-sm text-accent mt-1">Santa Clara County Behavioral Health Board 2021</p>
-                    </div>
-                    <div class="bg-card p-6 rounded-lg border border-border-color shadow-sm">
-                        <p class="font-semibold text-text-primary">Saratoga Choir MVP Chamber Choir</p>
-                        <p class="text-sm text-accent mt-1">Saratoga Music Boosters 2020</p>
-                    </div>
-                    <div class="bg-card p-6 rounded-lg border border-border-color shadow-sm">
-                        <p class="font-semibold text-text-primary">Saratoga Choir Rising Star Award</p>
-                        <p class="text-sm text-accent mt-1">Saratoga Music Boosters 2019</p>
-                    </div>
-                    <div class="bg-card p-6 rounded-lg border border-border-color shadow-sm">
-                        <p class="font-semibold text-text-primary">Saratoga Choir Outstanding Choir Member</p>
-                        <p class="text-sm text-accent mt-1">Saratoga Music Boosters 2021</p>
-                    </div>
-                    <div class="bg-card p-6 rounded-lg border border-border-color shadow-sm">
-                        <p class="font-semibold text-text-primary">Saratoga Color Guard Outstanding Veteran</p>
-                        <p class="text-sm text-accent mt-1">Saratoga Music Boosters 2021</p>
-                    </div>
-                    <div class="bg-card p-6 rounded-lg border border-border-color shadow-sm col-span-1 sm:col-span-2">
-                        <p class="font-semibold text-text-primary">Roger Wood Endowment Scholarship</p>
-                        <p class="text-sm text-accent mt-1">UC Santa Barbara 2025</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Coursework Section -->
-        <section id="coursework" class="py-24 px-8 bg-background">
-            <div class="container mx-auto max-w-7xl">
-                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Coursework</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- VLSI and Digital Design Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm">
-                        <h3 class="text-xl font-semibold text-text-primary mb-4">VLSI and Digital Design ⚙️</h3>
-                        <ul class="text-text-secondary space-y-2">
-                            <li>ECE 15A - FUND OF LOGIC DESIGN</li>
-                            <li>ECE 152A - DIGITAL DESIN PRIN.</li>
-                            <li>ECE 122A - VLSI PRINCIPLES</li>
-                            <li>ECE 153B - SNSR/PERPH INT DSGN</li>
-                            <li>ECE 122B - VLSI ARCH/DESIGN</li>
-                            <li>ECE 154A - INTRO COMPUTER ARCH</li>
-                        </ul>
-                    </div>
-                    <!-- Machine Learning Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm">
-                        <h3 class="text-xl font-semibold text-text-primary mb-4">Machine Learning 🤖</h3>
-                        <ul class="text-text-secondary space-y-2">
-                            <li>ECE 180 - INTRO DEEP LEARNING</li>
-                            <li>ECE 133 - INTRO OPT AND LEARN</li>
-                            <li>ECE 186 - PROB MACH LEARN</li>
-                            <li>ECE 157A - MACH LEARN DES TEST</li>
-                            <li>ECE 194BB - ADVERSARIAL MACHINE LEARNING</li>
-                        </ul>
-                    </div>
-                    <!-- Computer Science Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm">
-                        <h3 class="text-xl font-semibold text-text-primary mb-4">Computer Science 💻</h3>
-                        <ul class="text-text-secondary space-y-2">
-                            <li>CMPSC 16 - PROBLEM SOLVING I</li>
-                            <li>CMPSC 24 - PROBLEM SOLVING II</li>
-                            <li>CMPSC 32 - OBJ ORIENT DESIGN</li>
-                            <li>CMPSC 40 - FOUNDATION COMP SCI</li>
-                            <li>CMPSC 110 - INTRO RESEARCH CS</li>
-                            <li>CMPSC 130A - DATA STRUCT ALGOR</li>
-                            <li>CMPSC 196 - UNDERGRAD RESEARCH</li>
-                            <li>CMPSC 185 - HUM-COMP INTERACT</li>
-                            <li>CMPSC 190J - NETWORKS (GRAPHS)</li>
-                        </ul>
-                    </div>
-                    <!-- Circuits Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm">
-                        <h3 class="text-xl font-semibold text-text-primary mb-4">Circuits & Electrical Engineering ⚡</h3>
-                        <ul class="text-text-secondary space-y-2">
-                            <li>ECE 5 - INTRO TO ECE</li>
-                            <li>ECE 10A - FOUNDTN CIRC & SYS</li>
-                            <li>ECE 10AL - FOUNDTN CIRC LAB</li>
-                            <li>ECE 10B - FOUNDTN CIRC & SYS</li>
-                            <li>ECE 10BL - FOUNDTN CIRC LAB</li>
-                            <li>ECE 10C - FOUNDTN CIRC & SYS</li>
-                            <li>ECE 10CL - FOUNDTN CIRC LAB</li>
-                            <li>ECE 130A - SIGNAL ANALYSIS</li>
-                            <li>ECE 136C - QUANTUM PHOTONICS</li>
-                        </ul>
-                    </div>
-                    <!-- Foundational Math and Sciences Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm">
-                        <h3 class="text-xl font-semibold text-text-primary mb-4">Foundational Math & Sciences 🔬</h3>
-                        <ul class="text-text-secondary space-y-2">
-                            <li>MATH 3B - CALC WITH APPLI 2</li>
-                            <li>ECE 139 - PROB & STAT</li>
-                            <li>MATH 4A - LIN ALG W/APPS</li>
-                            <li>PHYS 1 & 2 - BASIC PHYSICS</li>
-                            <li>MATH 23A & 23B - Vector Calculus</li>
-                            <li>MATH 24 - Ordinary Diff Equas</li>
-                            <li>PHYS 3/3L & 4/4L - BASIC PHYSICS & LAB</li>
-                            <li>Introduction to Biology</li>
-                            <li>Infectious Disease</li>
-                        </ul>
-                    </div>
-                    <!-- Business and Management Card -->
-                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm">
-                        <h3 class="text-xl font-semibold text-text-primary mb-4">Business and Management 📈</h3>
-                        <ul class="text-text-secondary space-y-2">
-                            <li>TMP 120 - BUSINESS STRATEGY</li>
-                            <li>TMP 122 - ENTREPRENEURSHIP</li>
-                            <li>TMP 191VC - VENTURE CAPITAL/PE</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Skills Section -->
-        <section id="skills" class="py-24 px-8">
-            <div class="container mx-auto max-w-5xl">
-                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Skills</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                    <div>
-                        <h3 class="text-xl font-semibold text-text-primary mb-4">Languages</h3>
-                        <p class="text-text-secondary">Embedded C, Verilog, SystemVerilog, HLS, RISC-V Assembly, C++, Python, Matlab, Java</p>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-text-primary mb-4">Tools & Frameworks</h3>
-                        <p class="text-text-secondary">FPGA Programming (Vitis, Vivado), Cadence Virtuoso, Keil for ARM</p>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-text-primary mb-4">Proficiencies</h3>
-                        <p class="text-text-secondary">VLSI & ASIC Design, Digital System's Design, Machine Learning Workflows</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <footer id="contact" class="py-20 px-8 bg-white border-t border-border-color">
+        <!-- Contact Section / Footer -->
+        <footer id="contact" class="py-20 px-8 bg-footer-bg text-white border-t-4 border-accent">
             <div class="container mx-auto text-center">
-                <h2 class="text-2xl font-bold text-text-primary mb-4">Get In Touch</h2>
-                <p class="text-text-secondary max-w-md mx-auto mb-8">
-                    I'm always open to discussing new projects, research opportunities, or anything else.
+                <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
+                <p class="text-gray-300 max-w-md mx-auto mb-8">
+                    We are located at the University of California, Santa Barbara. Feel free to reach out for collaboration or inquiries.
                 </p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
+                     <img src="https://placehold.co/300x150/FFFFFF/2F4858?text=UCSB+Campus" alt="UCSB Campus" class="rounded-lg shadow-lg">
+                     <img src="https://placehold.co/300x150/FFFFFF/2F4858?text=UCSB+Logo" alt="UCSB Logo" class="rounded-lg shadow-lg">
+                </div>
                 <div class="flex justify-center space-x-4">
-                    <a href="mailto:nik.kapasi@gmail.com" class="bg-accent text-white px-6 py-3 rounded-md font-semibold hover:opacity-90 transition-opacity">
-                        Email Me
-                    </a>
-                    <a href="https://www.linkedin.com/in/nikhil-kapasi" target="_blank" rel="noopener noreferrer" class="border border-border-color text-text-secondary px-6 py-3 rounded-md font-semibold hover:border-accent hover:text-accent transition-colors">
-                        LinkedIn
+                    <a href="mailto:contact@bcn.ucsb.edu" class="bg-accent text-white px-6 py-3 rounded-md font-semibold hover:bg-accent-dark transition-colors">
+                        Email the Group
                     </a>
                 </div>
-                <p class="text-sm text-text-secondary mt-16">&copy; <script>document.write(new Date().getFullYear())</script> Nikhil Kapasi. All rights reserved.</p>
+                <p class="text-sm text-gray-400 mt-16">&copy; <script>document.write(new Date().getFullYear())</script> Biomimetic Circuits & Nanosystems Group. All rights reserved.</p>
             </div>
         </footer>
     </div>
@@ -681,6 +285,7 @@
             const preloader = document.getElementById('preloader');
             const mainContent = document.getElementById('main-content');
 
+            // Wait for animations to roughly finish
             setTimeout(() => {
                 preloader.classList.add('preloader-fade-out');
                 preloader.addEventListener('transitionend', () => {
