@@ -13,57 +13,9 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            overflow: hidden; /* Hide scrollbar during preloader */
         }
         html {
             scroll-behavior: smooth;
-        }
-        #main-content {
-            display: none; /* Hide main content initially */
-        }
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease;
-        }
-        .initials-container {
-            display: flex;
-            font-family: 'Playfair Display', serif;
-            font-size: 8rem; /* Adjusted for three letters */
-            color: white;
-        }
-        .initial {
-            animation: fall 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-            opacity: 0;
-        }
-        .initial-b {
-            animation-delay: 0.2s;
-        }
-        .initial-c {
-            animation-delay: 0.5s;
-        }
-        .initial-n {
-            animation-delay: 0.8s;
-        }
-        @keyframes fall {
-            0% {
-                transform: translateY(-200px);
-                opacity: 0;
-            }
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        .preloader-fade-out {
-            opacity: 0;
         }
     </style>
     <script>
@@ -89,15 +41,6 @@
     </script>
 </head>
 <body class="bg-background text-text-primary">
-
-    <!-- Preloader with new accent color -->
-    <div id="preloader" class="preloader bg-accent-light">
-        <div class="initials-container">
-            <span class="initial initial-b">B</span>
-            <span class="initial initial-c">C</span>
-            <span class="initial initial-n">N</span>
-        </div>
-    </div>
 
     <!-- Main Content Wrapper -->
     <div id="main-content">
@@ -231,29 +174,68 @@
             <div class="container mx-auto max-w-6xl">
                 <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Our Team</h2>
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                    <!-- Team Member Card -->
+                    <!-- Zachary Nelson -->
                     <div class="text-center">
-                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Team Member" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
-                        <h3 class="text-lg font-semibold text-text-primary">Dr. Lead Researcher</h3>
-                        <p class="text-accent">Principal Investigator</p>
+                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Zachary Nelson" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
+                        <h3 class="text-lg font-semibold text-text-primary">Zachary Nelson</h3>
+                        <p class="text-text-secondary">Ph.D Candidate Year 5</p>
+                        <div class="mt-2">
+                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+                        </div>
                     </div>
-                    <!-- Team Member Card -->
+                    <!-- Alice Mo -->
                     <div class="text-center">
-                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Team Member" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
-                        <h3 class="text-lg font-semibold text-text-primary">Postdoc Fellow</h3>
-                        <p class="text-text-secondary">Postdoctoral Researcher</p>
+                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Alice Mo" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
+                        <h3 class="text-lg font-semibold text-text-primary">Alice Mo</h3>
+                        <p class="text-text-secondary">Ph.D Candidate Year 5</p>
+                        <div class="mt-2">
+                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+                        </div>
                     </div>
-                    <!-- Team Member Card -->
+                    <!-- Wonsik Oh -->
                     <div class="text-center">
-                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Team Member" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
-                        <h3 class="text-lg font-semibold text-text-primary">PhD. Candidate</h3>
-                        <p class="text-text-secondary">Graduate Student</p>
+                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Wonsik Oh" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
+                        <h3 class="text-lg font-semibold text-text-primary">Wonsik Oh</h3>
+                        <p class="text-text-secondary">Ph.D Candidate Year 4</p>
+                        <div class="mt-2">
+                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+                        </div>
                     </div>
-                    <!-- Team Member Card -->
+                    <!-- Jinesh Jhonsa -->
                     <div class="text-center">
-                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Team Member" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
-                        <h3 class="text-lg font-semibold text-text-primary">Research Assistant</h3>
-                        <p class="text-text-secondary">Undergraduate Researcher</p>
+                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Jinesh Jhonsa" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
+                        <h3 class="text-lg font-semibold text-text-primary">Jinesh Jhonsa</h3>
+                        <p class="text-text-secondary">Ph.D Candidate Year 5</p>
+                        <div class="mt-2">
+                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <!-- William Whitehead -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="William Whitehead" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
+                        <h3 class="text-lg font-semibold text-text-primary">William Whitehead</h3>
+                        <p class="text-text-secondary">Ph.D Candidate Year 4</p>
+                        <div class="mt-2">
+                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <!-- Macan Tadayon -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Macan Tadayon" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
+                        <h3 class="text-lg font-semibold text-text-primary">Macan Tadayon</h3>
+                        <p class="text-text-secondary">Ph.D Candidate Year 6</p>
+                        <div class="mt-2">
+                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <!-- Nikhil Kapasi -->
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/CCCCCC/FFFFFF?text=Photo" alt="Nikhil Kapasi" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
+                        <h3 class="text-lg font-semibold text-text-primary">Nikhil Kapasi</h3>
+                        <p class="text-text-secondary">Second Year</p>
+                        <div class="mt-2">
+                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -279,22 +261,5 @@
             </div>
         </footer>
     </div>
-    <script>
-        // Preloader Logic
-        window.addEventListener('load', () => {
-            const preloader = document.getElementById('preloader');
-            const mainContent = document.getElementById('main-content');
-
-            // Wait for animations to roughly finish
-            setTimeout(() => {
-                preloader.classList.add('preloader-fade-out');
-                preloader.addEventListener('transitionend', () => {
-                    preloader.style.display = 'none';
-                    mainContent.style.display = 'block';
-                    document.body.style.overflow = 'auto'; // Restore scrollbar
-                });
-            }, 2500); // Adjust time as needed
-        });
-    </script>
 </body>
 </html>
