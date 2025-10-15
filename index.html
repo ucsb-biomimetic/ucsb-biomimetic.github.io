@@ -61,47 +61,166 @@
         <!-- Hero Section -->
         <section id="hero" class="min-h-screen flex justify-center items-center p-8 bg-white">
             <div class="container mx-auto flex flex-col lg:flex-row items-center justify-center gap-12">
-                <!-- Hero Image -->
-                <div class="w-full lg:w-1/2 flex-shrink-0">
-                    <img src="https://placehold.co/800x600/55DDE0/FFFFFF?text=Research+Image" alt="Biomimetic Circuits Research" class="w-full h-auto object-cover rounded-lg shadow-md border border-border-color">
+                <!-- Image Carousel -->
+                <div class="w-full lg:w-1/2 flex-shrink-0 relative overflow-hidden rounded-lg shadow-md border border-border-color">
+                <div class="relative w-full h-96 md:h-[520px] lg:h-[600px]" id="carousel-container">
+                    <!-- Image wrapper -->
+                    <div id="carousel" class="w-full h-full relative">
+                    <img src="Images/car1.png"
+                        alt="Research Image 1"
+                        class="carousel-image absolute inset-0 w-full h-full object-cover opacity-100 z-20 transition-opacity duration-700 ease-in-out">
+                    <img src="Images/car2.png"
+                        alt="Research Image 2"
+                        class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0 z-10 transition-opacity duration-700 ease-in-out">
+                    <img src="Images/car3.png"
+                        alt="Research Image 3"
+                        class="carousel-image absolute inset-0 w-full h-full object-cover opacity-0 z-10 transition-opacity duration-700 ease-in-out">
+                    </div>
+
+                    <!-- Pagination dots -->
+                    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-3 z-30">
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-white bg-opacity-70 ring-2 ring-white" data-index="0" aria-label="Go to slide 1"></button>
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-white bg-opacity-40" data-index="1" aria-label="Go to slide 2"></button>
+                    <button class="carousel-dot w-3 h-3 rounded-full bg-white bg-opacity-40" data-index="2" aria-label="Go to slide 3"></button>
+                    </div>
                 </div>
+                </div>
+
                 <!-- Text Content -->
                 <div class="text-center lg:text-left max-w-xl lg:w-1/2">
-                    <h1 class="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">Overview of Our Research</h1>
-                    <p class="text-md md:text-lg text-text-secondary mb-6">
-                        Our research lies at the intersection of electronics, photonics, soft-matter and biology. Our group consists of a diverse mix of disciplines such as Physics, Chemistry, Biology and Electrical Engineering. Our fundamental goal is to help people by using cutting edge research. Our lab has three focus areas: Soft Matter, Electronics, and Neuroscience.
-                    </p>
-                    <div class="flex justify-center lg:justify-start space-x-4">
-                         <a href="#research" class="bg-accent text-white px-6 py-3 rounded-md font-semibold hover:bg-accent-dark transition-colors">
-                            Explore Research
-                        </a>
-                    </div>
+                <h1 class="text-3xl md:text-4xl font-bold text-text-primary mb-4 tracking-tight">Overview of our Research</h1>
+                <p class="text-md md:text-lg text-text-secondary mb-6">
+                    Our lab studies the physics and engineering of advanced electronic systems, with primary research in microelectronic packaging,
+                    stochastic computing architectures, and electrical circuits and imaging sensors such as single-photon avalanche diodes (SPADs).
+                    We develop new device concepts and integration strategies that bridge physical hardware and computation, aiming to improve performance,
+                    scalability, and energy efficiency across diverse platforms. Our methods and technologies find broad application in photonics,
+                    physics, chemistry, and biology, where electronic and optical systems increasingly intersect. Ultimately, our goal is to combine these
+                    diverse fields to create truly cutting-edge engineering solutions that push the boundaries of modern technology.
+                </p>
+                <div class="flex justify-center lg:justify-start space-x-4">
+                    <a href="#research" class="bg-accent text-white px-6 py-3 rounded-md font-semibold hover:bg-accent-dark transition-colors">
+                    Explore Research
+                    </a>
+                </div>
                 </div>
             </div>
         </section>
+
+<!-- Put this script after the carousel HTML (before </body>) -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // Query the exact class used in your markup
+  const slides = Array.from(document.querySelectorAll('.carousel-image'));
+  const dots   = Array.from(document.querySelectorAll('.carousel-dot'));
+
+  if (!slides.length || !dots.length) {
+    // nothing to do if markup is missing
+    return;
+  }
+
+  let current = 0;
+  const INTERVAL_MS = 4000;
+  let timer = null;
+
+  function setActiveIndex(index) {
+    slides.forEach((slide, i) => {
+      if (i === index) {
+        slide.classList.remove('opacity-0');
+        slide.classList.add('opacity-100');
+        slide.style.zIndex = '20';
+      } else {
+        slide.classList.remove('opacity-100');
+        slide.classList.add('opacity-0');
+        slide.style.zIndex = '10';
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === index) {
+        dot.setAttribute('aria-selected', 'true');
+        dot.classList.remove('bg-opacity-40');
+        dot.classList.add('bg-opacity-70', 'ring-2', 'ring-white');
+      } else {
+        dot.setAttribute('aria-selected', 'false');
+        dot.classList.remove('bg-opacity-70', 'ring-2', 'ring-white');
+        dot.classList.add('bg-opacity-40');
+      }
+    });
+
+    current = index;
+  }
+
+  function nextSlide() {
+    setActiveIndex((current + 1) % slides.length);
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    timer = setInterval(nextSlide, INTERVAL_MS);
+  }
+
+  function stopAutoplay() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  // Attach click handlers for dots
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      const idx = parseInt(dot.dataset.index, 10);
+      if (Number.isFinite(idx)) {
+        stopAutoplay();
+        setActiveIndex(idx);
+        // restart autoplay after brief delay so the user sees the slide
+        setTimeout(startAutoplay, 800);
+      }
+    });
+  });
+
+  // initialize
+  setActiveIndex(0);
+  startAutoplay();
+
+  // optional: pause on hover and resume on leave
+  const carouselRoot = document.getElementById('carousel');
+  if (carouselRoot) {
+    carouselRoot.addEventListener('mouseenter', stopAutoplay);
+    carouselRoot.addEventListener('mouseleave', startAutoplay);
+  }
+});
+</script>
+
 
         <!-- Primary Research Areas Section -->
         <section id="research" class="py-24 px-8 bg-section-bg">
             <div class="container mx-auto max-w-6xl">
                 <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Primary Research Areas</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Soft Matter Card -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Packaging Card -->
                     <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm text-center">
-                        <img src="https://placehold.co/400x300/33658A/FFFFFF?text=Soft+Matter" alt="Soft Matter" class="w-full h-48 object-cover rounded-md mb-6 mx-auto">
-                        <h3 class="text-xl font-semibold text-text-primary mb-2">Soft Matter</h3>
+                        <img src="Images/package.jpg" alt="Soft Matter" class="w-full h-48 object-cover rounded-md mb-6 mx-auto">
+                        <h3 class="text-xl font-semibold text-text-primary mb-2">Packaging</h3>
                         <p class="text-text-secondary">Our group explores the interaction between self-assembling polymer membranes and proteins. We perform polymer synthesis and characterization, physical-chemical and protein-inversion studies. Our goal is to design and develop novel polymers for bio-sensing applications.</p>
                     </div>
                     <!-- Electronics Card -->
                     <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm text-center">
-                        <img src="https://placehold.co/400x300/33658A/FFFFFF?text=Electronics" alt="Electronics" class="w-full h-48 object-cover rounded-md mb-6 mx-auto">
-                        <h3 class="text-xl font-semibold text-text-primary mb-2">Electronics</h3>
-                        <p class="text-text-secondary">We have two complementary thrusts in electronics: 1) Ultra-low power mixed-signal circuit design for biosensors and 2) High-performance mixed-signal for control and stabilization of photonic ICs. We specialize in PLLs, DLLs, low-noise analog front-end amplifiers, sigma-delta ADCs, and novel signal control loops.</p>
+                        <img src="Images/pll.avif" alt="Electronics" class="w-full h-48 object-cover rounded-md mb-6 mx-auto">
+                        <h3 class="text-xl font-semibold text-text-primary mb-2">Circuits</h3>
+                        <p class="text-text-secondary"> 1) Ultra-low power mixed-signal circuit design for biosensors and 2) High-performance mixed-signal for control and stabilization of photonic ICs. We specialize in PLLs, DLLs, low-noise analog front-end amplifiers, sigma-delta ADCs, and novel signal control loops.</p>
                     </div>
-                    <!-- Neuroscience Card -->
+                    <!-- EWOD and SPAD Card -->
                     <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm text-center">
-                        <img src="https://placehold.co/400x300/33658A/FFFFFF?text=Neuroscience" alt="Neuroscience" class="w-full h-48 object-cover rounded-md mb-6 mx-auto">
-                        <h3 class="text-xl font-semibold text-text-primary mb-2">Neuroscience</h3>
-                        <p class="text-text-secondary">We approach neuroscience from two perspectives: neural prosthesis and neural computation. We develop new methods to sense and record neural signals. We also study neural circuits in-vitro to understand how neural computations are performed. Another facet of research is to develop in-silico models of neural computation and design neuromorphic computing ICs based on these models.</p>
+                        <img src="Images/cell_probes.avif" alt="Bio Applications" class="w-full h-48 object-cover rounded-md mb-6 mx-auto">
+                        <h3 class="text-xl font-semibold text-text-primary mb-2">Bio Applications</h3>
+                        <p class="text-text-secondary">sdfsdfsd</p>
+                    </div>
+                    <!-- Probabilistic Computing Card -->
+                    <div class="bg-card p-8 rounded-lg border border-border-color shadow-sm text-center">
+                        <img src="https://placehold.co/400x300/33658A/FFFFFF?text=Neuroscience" alt="Stochastic Computing" class="w-full h-48 object-cover rounded-md mb-6 mx-auto">
+                        <h3 class="text-xl font-semibold text-text-primary mb-2">Probabilistic Computing</h3>
+                        <p class="text-text-secondary">dfshdfsdf</p>
                     </div>
                 </div>
             </div>
@@ -114,16 +233,16 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     <!-- Project Card -->
                     <div class="bg-card rounded-lg border border-border-color shadow-sm overflow-hidden">
-                        <img src="https://placehold.co/400x300/F26419/FFFFFF?text=Packaging" alt="Packaging Project" class="w-full h-40 object-cover">
+                        <img src="Images/enclosed_die.png" alt="Packaging Project" class="w-full h-40 object-cover">
                         <div class="p-6">
-                            <h3 class="text-lg font-semibold text-text-primary">Packaging</h3>
+                            <h3 class="text-lg font-semibold text-text-primary">Through Silicon Vias and Redistribution layers</h3>
                         </div>
                     </div>
                      <!-- Project Card -->
                     <div class="bg-card rounded-lg border border-border-color shadow-sm overflow-hidden">
                         <img src="https://placehold.co/400x300/F26419/FFFFFF?text=Fluidics" alt="Fluidics Project" class="w-full h-40 object-cover">
                         <div class="p-6">
-                            <h3 class="text-lg font-semibold text-text-primary">Fluidics</h3>
+                            <h3 class="text-lg font-semibold text-text-primary">Digital Microfluidics/EWOD</h3>
                         </div>
                     </div>
                      <!-- Project Card -->
@@ -135,122 +254,480 @@
                     </div>
                      <!-- Project Card -->
                     <div class="bg-card rounded-lg border border-border-color shadow-sm overflow-hidden">
-                        <img src="https://placehold.co/400x300/F26419/FFFFFF?text=Sensors" alt="Sensors Project" class="w-full h-40 object-cover">
+                        <img src="Images/neural_probes.avif" alt="Sensors Project" class="w-full h-40 object-cover">
                         <div class="p-6">
-                            <h3 class="text-lg font-semibold text-text-primary">Sensors</h3>
+                            <h3 class="text-lg font-semibold text-text-primary">SPAD Sensors</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Publications Section -->
-        <section id="publications" class="py-24 px-8 bg-section-bg">
-        </section>
+<!-- Publications Section -->
+<section id="publications" class="py-24 px-8 bg-section-bg">
+  <div class="container mx-auto max-w-5xl">
+    <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Publications</h2>
 
-        <!-- People Section -->
-        <section id="people" class="py-24 px-8 bg-white">
-            <div class="container mx-auto max-w-6xl">
-                <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">Our Team</h2>
-                <div class="mb-12 flex items-center">
-                    <div class="flex-shrink-0 mr-8">
-                        <img src="luke.png" alt="Luke Theogarajan" class="w-40 h-40 rounded-full border-4 border-accent-light shadow-md">
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-semibold text-text-primary">Luke Theogarajan</h3>
-                        <p class="text-accent">Principal Investigator</p>
-                        <p class="text-text-secondary mt-4">
-                            Luke Theogarajan is currently a Professor at the University of California, Santa Barbara in Electrical and Computer Engineering. He received his Ph.D. degree in Electrical Engineering and Computer Science at the Massachusetts Institute of Technology in 2007. His research interests include combining the processing power of electronics with the versatility of synthetic chemistry to develop neural prosthetic devices, integrating CMOS circuits with nanoscale sensors to develop novel biosensors and developing simple synthetic mimics of biological function to gain a deeper physical understanding of biological phenomena. Before starting his Ph.D, he worked for intel for 5 years where he was part of the Pentium 4 design team. He has published both in the field of electrical engineering and polymer chemistry and holds 4 patents. Professor Theogarajan is also a 2010 NIH New Innovator Award recipient and a 2011 NSF Career Award recipient. He has been awarded the Northrupp Grumman Excellence in teaching award in 2011 and the outstanding faculty member in EE for the years 2009, 2010,  2011, 2012, 2013, and 2017.
-                        </p>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-                    <!-- Zachary Nelson -->
-                    <div class="text-center">
-                        <img src="zachary.png" alt="Zachary Nelson" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
-                        <h3 class="text-lg font-semibold text-text-primary">Zachary Nelson</h3>
-                        <p class="text-text-secondary">Ph.D Candidate Year 5</p>
-                        <div class="mt-2">
-                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
-                        </div>
-                    </div>
-                    <!-- Alice Mo -->
-                    <div class="text-center">
-                        <img src="alice.png" alt="Alice Mo" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
-                        <h3 class="text-lg font-semibold text-text-primary">Alice Mo</h3>
-                        <p class="text-text-secondary">Ph.D Candidate Year 5</p>
-                        <div class="mt-2">
-                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
-                        </div>
-                    </div>
-                    <!-- Wonsik Oh -->
-                    <div class="text-center">
-                        <img src="wonsik.png" alt="Wonsik Oh" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
-                        <h3 class="text-lg font-semibold text-text-primary">Wonsik Oh</h3>
-                        <p class="text-text-secondary">Ph.D Candidate Year 4</p>
-                        <div class="mt-2">
-                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
-                        </div>
-                    </div>
-                    <!-- Jinesh Jhonsa -->
-                    <div class="text-center">
-                        <img src="jinesh.png" alt="Jinesh Jhonsa" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
-                        <h3 class="text-lg font-semibold text-text-primary">Jinesh Jhonsa</h3>
-                        <p class="text-text-secondary">Ph.D Candidate Year 5</p>
-                        <div class="mt-2">
-                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
-                        </div>
-                    </div>
-                    <!-- William Whitehead -->
-                    <div class="text-center">
-                        <img src="william.png" alt="William Whitehead" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
-                        <h3 class="text-lg font-semibold text-text-primary">William Whitehead</h3>
-                        <p class="text-text-secondary">Ph.D Candidate Year 4</p>
-                        <div class="mt-2">
-                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
-                        </div>
-                    </div>
-                    <!-- Macan Tadayon -->
-                    <div class="text-center">
-                        <img src="macan.png" alt="Macan Tadayon" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
-                        <h3 class="text-lg font-semibold text-text-primary">Macan Tadayon</h3>
-                        <p class="text-text-secondary">Ph.D Candidate Year 6</p>
-                        <div class="mt-2">
-                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
-                        </div>
-                    </div>
-                    <!-- Nikhil Kapasi -->
-                    <div class="text-center">
-                        <img src="nikhil.png" alt="Nikhil Kapasi" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md">
-                        <h3 class="text-lg font-semibold text-text-primary">Nikhil Kapasi</h3>
-                        <p class="text-text-secondary">Second Year</p>
-                        <div class="mt-2">
-                            <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section / Footer -->
-        <footer id="contact" class="py-20 px-8 bg-footer-bg text-white border-t-4 border-accent">
-            <div class="container mx-auto text-center">
-                <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
-                <p class="text-gray-300 max-w-md mx-auto mb-8">
-                    We are located at the University of California, Santa Barbara. Feel free to reach out for collaboration or inquiries.
+    <div class="space-y-8">
+        <!-- Publication Item -->
+        <div class="flex justify-between items-start">
+            <div>
+                <a href="https://ieeexplore.ieee.org/abstract/document/11038155" target="_blank" rel="noopener noreferrer"  class="text-lg font-semibold text-blue-700 hover:underline">
+                Universal Micropatterning Technique for High Density Die Packaging
+                </a>
+                <p class="text-sm text-gray-600 mt-1">
+                    A Mo, Z Nelson, L Theogarajan
                 </p>
-                <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
-                     <img src="https://placehold.co/300x150/FFFFFF/2F4858?text=UCSB+Campus" alt="UCSB Campus" class="rounded-lg shadow-lg">
-                     <img src="https://placehold.co/300x150/FFFFFF/2F4858?text=UCSB+Logo" alt="UCSB Logo" class="rounded-lg shadow-lg">
-                </div>
-                <div class="flex justify-center space-x-4">
-                    <a href="mailto:contact@bcn.ucsb.edu" class="bg-accent text-white px-6 py-3 rounded-md font-semibold hover:bg-accent-dark transition-colors">
-                        Email the Group
-                    </a>
-                </div>
-                <p class="text-sm text-gray-400 mt-16">&copy; <script>document.write(new Date().getFullYear())</script> Biomimetic Circuits & Nanosystems Group. All rights reserved.</p>
+                <p class="text-sm text-gray-800 italic mt-0.5">
+                    2025 IEEE 75th Electronic Components and Technology Conference (ECTC), 2237-2242
+                </p>
             </div>
-        </footer>
+            <span class="text-gray-500 text-sm mt-1">2025</span>
+        </div>
+
+        <div class="flex justify-between items-start">
+            <div>
+            <a href="https://opg.optica.org/prj/fulltext.cfm?uri=prj-12-11-A69" target="_blank" rel="noopener noreferrer"  class="text-lg font-semibold text-blue-700 hover:underline">
+                High capacity, low power, short reach integrated silicon photonic interconnects
+            </a>
+            <p class="text-sm text-gray-600 mt-1">
+                Andrew Netherton, Mario Dumont, Zachary Nelson, Jahyun Koo, Jinesh Jhonsa, Alice Mo, David McCarthy, Skylar Deckoff-Jones, Yun Gao, Noah Pestana, Jordan Goldstein, Ren-Jye Shiue, Christopher Poulton, MJ Kennedy, Mark Harrington, Bozhang Dong, Jock Bovington, Michael Frankel, Luke Theogarajan, Michael Watts, Daniel Blumenthal, John E Bowers
+            </p>
+            <p class="text-sm text-gray-800 italic mt-0.5">
+                Photonics Research, A69-A86
+            </p>
+            </div>
+            <span class="text-gray-500 text-sm mt-1">2024</span>
+        </div>
+
+        <div class="flex justify-between items-start">
+            <div>
+                <a href="https://ieeexplore.ieee.org/abstract/document/10659028" target="_blank" rel="noopener noreferrer"  class="text-lg font-semibold text-blue-700 hover:underline">
+                    CMOS Single-Photon Avalanche Diode Circuits for Probabilistic Computing
+                </a>
+                <p class="text-sm text-gray-600 mt-1">
+                    William Whitehead, Wonsik Oh, Luke Theogarajan
+                </p>
+                <p class="text-sm text-gray-800 italic mt-0.5">
+                    IEEE journal on exploratory solid-state computational devices and circuits
+                </p>
+            </div>
+            <span class="text-gray-500 text-sm mt-1">2024</span>
+        </div>
+
+        <div class="flex justify-between items-start">
+            <div>
+                <a href="https://ieeexplore.ieee.org/abstract/document/10658850" target="_blank" rel="noopener noreferrer"  class="text-lg font-semibold text-blue-700 hover:underline">
+                    A 10 MHz to 3.2 GHz Differential Current Starved Inverter-Based Self-Biased Adaptive Bandwidth PLL in 65nm CMOS
+                </a>
+                <p class="text-sm text-gray-600 mt-1">
+                    Jahyun Koo, Luke Theogarajan
+                </p>
+                <p class="text-sm text-gray-800 italic mt-0.5">
+                    2024 IEEE 67th International Midwest Symposium on Circuits and Systems (MWSCAS)
+                </p>
+            </div>
+            <span class="text-gray-500 text-sm mt-1">2024</span>
+        </div>
+
+        <div class="flex justify-between items-start">
+            <div>
+                <a href="https://ieeexplore.ieee.org/abstract/document/10564881" target="_blank" rel="noopener noreferrer"  class="text-lg font-semibold text-blue-700 hover:underline">
+                    New Method of Creating Through Silicon Vias for Next Generation Packaging Techniques
+                </a>
+                <p class="text-sm text-gray-600 mt-1">
+                    Zachary Nelson, Alice Mo, Luke Theogarajan
+                </p>
+                <p class="text-sm text-gray-800 italic mt-0.5">
+                    2024 IEEE 74th Electronic Components and Technology Conference (ECTC)
+                </p>
+            </div>
+            <span class="text-gray-500 text-sm mt-1">2024</span>
+        </div>
+
+        <div class="flex justify-between items-start">
+            <div>
+                <a href="https://ieeexplore.ieee.org/abstract/document/10454400"  target="_blank" rel="noopener noreferrer" class="text-lg font-semibold text-blue-700 hover:underline">
+                    25.1 Short-Reach Silicon Photonic Interconnects with Quantum Dot Mode Locked Laser Comb Sources
+                </a>
+                <p class="text-sm text-gray-600 mt-1">
+                    Andrew Netherton, Mario Dumont, Zachary Nelson, Jinesh Jhonsa, Alice Mo, Jahyun Koo, David McCarthy, Noah Pestana, Skylar Deckoff-Jones, Christopher Poulton, Michael Frankel, Jock Bovington, Luke Theogarajan, John Bowers
+                </p>
+                <p class="text-sm text-gray-800 italic mt-0.5">
+                    2024 IEEE International Solid-State Circuits Conference (ISSCC)
+                </p>
+            </div>
+            <span class="text-gray-500 text-sm mt-1">2024</span>
+        </div> 
+
+         <div class="flex justify-between items-start">
+            <div>
+                <a href="https://www.nature.com/articles/s41928-023-01065-0" target="_blank" rel="noopener noreferrer" class="text-lg font-semibold text-blue-700 hover:underline">
+                    CMOS-compatible Ising and Potts annealing using single-photon avalanche diodes
+                </a>
+                <p class="text-sm text-gray-600 mt-1">
+                    William Whitehead, Zachary Nelson, Kerem Y Camsari, Luke Theogarajan
+                </p>
+                <p class="text-sm text-gray-800 italic mt-0.5">
+                    Nature Electronics
+                </p>
+            </div>
+            <span class="text-gray-500 text-sm mt-1">2023</span>
+        </div>
+
+        <div class="flex justify-between items-start">
+            <div>
+                <a href="https://ieeexplore.ieee.org/abstract/document/10068500"  target="_blank" rel="noopener noreferrer" class="text-lg font-semibold text-blue-700 hover:underline">
+                    A full-stack view of probabilistic computing with p-bits: Devices, architectures, and algorithms
+                </a>
+                <p class="text-sm text-gray-600 mt-1">
+                    Shuvro Chowdhury, Andrea Grimaldi, Navid Anjum Aadit, Shaila Niazi, Masoud Mohseni, Shun Kanai, Hideo Ohno, Shunsuke Fukami, Luke Theogarajan, Giovanni Finocchio, Supriyo Datta, Kerem Y Camsari
+                </p>
+                <p class="text-sm text-gray-800 italic mt-0.5">
+                    IEEE Journal on Exploratory Solid-State Computational Devices and Circuits
+                </p>
+            </div>
+            <span class="text-gray-500 text-sm mt-1">2023</span>
+        </div>
+
+        <div class="flex justify-between items-start">
+            <div>
+                <a href="https://www.nature.com/articles/s41928-022-00774-2"  target="_blank" rel="noopener noreferrer" class="text-lg font-semibold text-blue-700 hover:underline">
+                    Massively parallel probabilistic computing with sparse Ising machines
+                </a>
+                <p class="text-sm text-gray-600 mt-1">
+                    Navid Anjum Aadit, Andrea Grimaldi, Mario Carpentieri, Luke Theogarajan, John M Martinis, Giovanni Finocchio, Kerem Y Camsari
+                </p>
+                <p class="text-sm text-gray-800 italic mt-0.5">
+                    Nature Electronics
+                </p>
+            </div>
+            <span class="text-gray-500 text-sm mt-1">2022</span>
+        </div>
+
+        <!-- <div class="flex justify-between items-start">
+            <div>
+                <a href="#" class="text-lg font-semibold text-blue-700 hover:underline">
+                    Title
+                </a>
+                <p class="text-sm text-gray-600 mt-1">
+                    Authors
+                </p>
+                <p class="text-sm text-gray-800 italic mt-0.5">
+                    Journal
+                </p>
+            </div>
+            <span class="text-gray-500 text-sm mt-1">Year</span>
+        </div> -->
+
+        <!-- Google Scholar link -->
+        <div class="text-center mt-12">
+        <a 
+            href="https://scholar.google.com/citations?user=pL_zWh0AAAAJ" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="inline-block text-blue-700 font-medium hover:underline hover:text-blue-800 transition duration-200">
+            Google Scholar 
+        </a>
+        </div>
+    </div>
+  </div>
+</section>
+
+
+<section id="people" class="py-24 px-8 bg-white">
+  <div class="container mx-auto max-w-6xl">
+    <!-- Main Section Title -->
+    <h2 class="text-3xl font-bold text-center text-text-primary mb-16 tracking-wide">
+      Our Team
+    </h2>
+
+    <!-- Principal Investigator -->
+    <div class="mb-16 flex flex-col md:flex-row items-center">
+      <div class="flex-shrink-0 md:mr-8 mb-8 md:mb-0">
+        <img src="Images/Luke.jpg" alt="Luke Theogarajan"
+             class="w-40 h-40 rounded-full border-4 border-accent-light shadow-md">
+      </div>
+    
+
+        <div>
+            <h3 class="text-xl font-semibold text-text-primary">Luke Theogarajan</h3>
+            <p class="text-accent">Principal Investigator</p>
+            <p class="mt-1">
+                <a href="mailto:lusthe@ucsb.edu" class="text-blue-600 underline hover:text-accent transition-colors">
+                    lusthe@ucsb.edu
+                </a>
+            </p>
+            <p class="text-text-secondary mt-4">
+            Luke Theogarajan is currently a Professor at the University of California, Santa Barbara in Electrical and Computer Engineering. 
+            He received his Ph.D. degree in Electrical Engineering and Computer Science at the Massachusetts Institute of Technology in 2007.
+            His research interests include combining the processing power of electronics with the versatility of synthetic chemistry to develop neural prosthetic devices, integrating CMOS circuits with nanoscale sensors to develop novel biosensors and developing simple synthetic mimics of biological function to gain a deeper physical understanding of biological phenomena. 
+            Before starting his Ph.D, he worked for intel for 5 years where he was part of the Pentium 4 design team. 
+            He has published both in the field of electrical engineering and polymer chemistry and holds 4 patents. Professor Theogarajan is also a 2010 NIH New Innovator Award recipient and a 2011 NSF Career Award recipient. 
+            He has been awarded the Northrupp Grumman Excellence in teaching award in 2011 and the outstanding faculty member in EE for the years 2009, 2010,  2011, 2012, 2013, and 2017.
+            </p>
+        </div>
+    </div>
+
+    <!-- PhD Students Section -->
+    <h3 class="text-2xl font-bold text-text-primary mb-8 border-b-2 border-accent pb-2">
+      Ph.D. Students
+    </h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 mb-16">
+
+        <!-- Zachary Nelson -->
+        <div class="text-center">
+            <img src="Images/zachary.avif" alt="Zachary Nelson"
+                class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md object-cover object-center">
+            <h3 class="text-lg font-semibold text-text-primary">Zachary Nelson</h3>
+            <p class="text-text-secondary">Chip to Wafer Packaging for Opto-Electronic Integration</p>
+            <p class="text-sm text-text-secondary">Ph.D. Candidate, Year 5</p>
+
+                
+            <p class="mt-1">
+                <a href="mailto:zlnelson@ucsb.edu" class="text-blue-600 underline hover:text-accent transition-colors">
+                    zlnelson@ucsb.edu
+                </a>
+            </p>
+
+            <div class="mt-2">
+                <a href="#" class="text-text-secondary hover:text-accent transition-colors">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Alice Mo -->
+        <div class="text-center">
+            <img src="Images/alice.avif" alt="Alice Mo"
+                class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md object-cover object-center">
+            <h3 class="text-lg font-semibold text-text-primary">Alice Mo</h3>
+            <p class="text-text-secondary">(MEMS) and Bio-MEMS</p>
+            <p class="text-sm text-text-secondary">Ph.D. Candidate, Year 4</p>
+
+            <p class="mt-1">
+                <a href="mailto:alicemo@ucsb.edu" class="text-blue-600 underline hover:text-accent transition-colors">
+                    alicemo@ucsb.edu
+                </a>
+            </p>
+
+            <div class="mt-2">
+            <a href="#" class="text-text-secondary hover:text-accent transition-colors">
+                <i class="fab fa-linkedin fa-lg"></i>
+            </a>
+            </div>
+        </div>
+
+        <!-- Wonsik Oh -->
+        <div class="text-center">
+            <img src="Images/Wonsik.avif" alt="Wonsik Oh"
+                class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md object-cover object-center">
+            <h3 class="text-lg font-semibold text-text-primary">Wonsik Oh</h3>
+            <p class="text-text-secondary">CMOS image sensors, biometric image sensors, and X-ray detectors, analog/mixed-signal integrated circuits and optical devices</p>
+            <p class="text-sm text-text-secondary">Ph.D. Candidate, Year 4</p>
+            
+            <!-- Email Section -->
+            <p class="mt-1">
+                <a href="mailto:wonsik@ucsb.edu" class="text-blue-600 underline hover:text-accent transition-colors">
+                    wonsik@ucsb.edu
+                </a>
+            </p>
+            <div class="mt-2">
+            <a href="#" class="text-text-secondary hover:text-accent transition-colors">
+                <i class="fab fa-linkedin fa-lg"></i>
+            </a>
+            </div>
+        </div>
+
+        <!-- Jinesh Jhonsa -->
+        <div class="text-center">
+            <img src="Images/jihnesh.avif" alt="Jinesh Jhonsa" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md object-cover object-center">
+            <h3 class="text-lg font-semibold text-text-primary">Jinesh Jhonsa</h3>
+            <p class="text-text-secondary">combinatorial optimization problems and FPGA-based signal processing for advanced communication systems</p>
+            <p class="text-sm text-text-secondary">Ph.D Candidate Year 5</p>
+
+            <!-- Email Section -->
+            <p class="mt-1">
+                <a href="mailto:jinesh@ucsb.edu" class="text-blue-600 underline hover:text-accent transition-colors">
+                    jinesh@ucsb.edu
+                </a>
+            </p>
+
+            <div class="mt-2">
+                <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+            </div>
+        </div>
+
+        <!-- Yihao Wu -->
+        <div class="text-center">
+            <img src="Images/yihao.jpg" alt="Yihao Wu" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md object-cover object-center">
+            <h3 class="text-lg font-semibold text-text-primary">Yihao Wu</h3>
+            <p class="text-text-secondary">Ising/Potts Machine, ASIC Hardware Accelerator</p>
+            <p class="text-sm text-text-secondary">Ph.D Candidate Year 2</p>
+
+            <!-- Email Section -->
+            <p class="mt-1">
+                <a href="mailto:yihao_wu@ucsb.edu" class="text-blue-600 underline hover:text-accent transition-colors">
+                    yihao_wu@ucsb.edu
+                </a>
+            </p>
+
+            <div class="mt-2">
+                <a href="https://www.linkedin.com/in/yihao-wu-a91474255/" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+            </div>
+        </div>
+
+        <!-- Macan Tadayon -->
+        <div class="text-center">
+            <img src="Images/macan.avif" alt="Macan Tadayon" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md object-cover object-center">
+            <h3 class="text-lg font-semibold text-text-primary">Macan Tadayon</h3>
+            <p class="text-text-secondary">CMOS image sensors for biomedical applications</p>
+            <p class="text-sm text-text-secondary">Ph.D. Candidate Year 6</p>
+
+
+
+            <!-- Social Links -->
+            <div class="mt-2">
+                <a href="#" class="text-text-secondary hover:text-accent transition-colors">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+            </div>
+        </div>
+
+
+
+        <!-- Kevin Coffey -->
+        <div class="text-center">
+            <img src="Images/kevin.jpg" 
+            alt="Kevin Coffey" 
+            class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md object-cover object-center">
+            <h3 class="text-lg font-semibold text-text-primary">Kevin Coffey</h3>
+            <p class="text-text-secondary">Packaging for biomedical applications</p>
+            <p class="text-sm text-text-secondary">Ph.D Candidate Year 1</p>
+
+            <!-- Email Section -->
+            <p class="mt-1">
+                <a href="mailto:kevincoffey@ucsb.edu" class="text-blue-600 underline hover:text-accent transition-colors">
+                    kevincoffey@ucsb.edu
+                </a>
+            </p>
+
+            <div class="mt-2">
+                <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+            </div>
+        </div>
+
+    </div>
+        <!-- Undergraduate Students Section -->
+    <h3 class="text-2xl font-bold text-text-primary mb-8 border-b-2 border-accent pb-2">
+        Undergraduate Students
+    </h3>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+        <!-- Nikhil Kapasi -->
+        <div class="text-center">
+            <img src="Images/nikhil.avif" alt="Nikhil Kapasi" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md object-cover object-center">
+            <h3 class="text-lg font-semibold text-text-primary">Nikhil Kapasi</h3>
+            <p class="text-text-secondary">Fourth Year</p>
+            <div class="mt-2">
+                <a href="#" 
+                class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+            </div>
+        </div>
+        <!-- Erk Sampat -->
+        <div class="text-center">
+            <img src="erk.png" alt="Erk Sampat" class="w-40 h-40 rounded-full mx-auto mb-4 border-4 border-accent-light shadow-md object-cover object-center">
+            <h3 class="text-lg font-semibold text-text-primary">Erk Sampat</h3>
+            <p class="text-text-secondary">Fourth year</p>
+            <div class="mt-2">
+                <a href="#" class="text-text-secondary hover:text-accent transition-colors"><i class="fab fa-linkedin fa-lg"></i></a>
+            </div>
+        </div>
+
+    </div>
+    <h3 class="text-2xl font-bold text-text-primary mb-8 border-b-2 border-accent pb-2">
+        Alumni
+    </h3>
+    <!-- Alumni Section -->
+<section id="alumni" class="py-24 px-8 bg-gray-50">
+  <div class="container mx-auto max-w-6xl">
+    <h2 class="text-4xl font-semibold text-center mb-12 text-gray-900">Alumni</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-800">
+
+      <!-- Left Column -->
+    <div class="space-y-2">
+        <!-- PhD and docs -->
+        <a href="#" class="text-blue-700 underline">William Whitehead</a> (Ph.D. 2025) → NXP<br>
+        <a href="https://www.linkedin.com/in/mitrasaeedi/" class="text-blue-700 underline">Mitra Saedi</a> (Ph.D. 2021) → Semtech<br>
+        <a href="#" class="text-blue-700 underline">Prajakta Kulkarni</a> (PostDoc 2020)<br>
+        <a href="https://www.linkedin.com/in/sarah-grundeen-85b133161/" class="text-blue-700 underline">Sarah Grundeen</a> (Ph.D. 2019) → Northrop Grumman<br>
+        <a href="https://www.linkedin.com/in/aaronjbluestone/" class="text-blue-700 underline">Aaron Blustone</a> (Ph.D. 2018) → HRL<br>
+        <a href="#" class="text-blue-700 underline">Chin-Hsiuan Chen</a> (Ph.D. 2017)<br>
+        <a href="https://www.linkedin.com/in/justin-rofeh-94148392/" class="text-blue-700 underline">Justin Rofeh</a> (Ph.D. 2017) → Laxmi Therapeutic<br>
+        <a href="https://www.linkedin.com/in/avantika-sodhi-317b3217/" class="text-blue-700 underline">Avantika Sodhi</a> (Ph.D. 2017)  → Qualcomm<br>
+        <a href="#" class="text-blue-700 underline">Melika Payvand</a> (Ph.D. 2017) → Prof @ University of Zurich<br>
+        <a href="https://www.linkedin.com/in/danielle-morton-7b714956/" class="text-blue-700 underline">Danielle Morton</a> (Ph.D. 2016) → Apple<br>
+        <a href="https://www.linkedin.com/in/shahab-mortezaei-435838a4/" class="text-blue-700 underline">Shahab Mortezaei</a> (PostDoc 2015) → Atomwise<br>
+        <a href="https://www.linkedin.com/in/matthew-pevarnik-466737a5/" class="text-blue-700 underline">Matthew Pevarnik</a> (PostDoc 2015) → Prof @ Regent University<br>
+        <a href="#" class="text-blue-700 underline">Weibin Cui</a> (PostDoc 2015)<br>
+        <a href="https://www.linkedin.com/in/sukru-yemenicioglu-42a2973b/" class="text-blue-700 underline">Sukru Yemenucioglu</a> (Ph.D. 2015)  → Apple<br>
+        <a href="https://www.linkedin.com/in/ellie-corigliano-ph-d-6992517/" class="text-blue-700 underline">Ellie Corigliano</a> (PostDoc 2013) → Merck<br>
+        <a href="https://www.linkedin.com/in/michael-j-isaacman-ph-d-828a83a7/" class="text-blue-700 underline">Micheal Isaacman</a> (Ph.D. 2013) → PHD Biossciences<br>
+        <a href="https://www.linkedin.com/in/luis-chen-8b3aab29/" class="text-blue-700 underline">Luis Chen</a> (Ph.D. 2012) → Qualcomm<br>
+        <a href="https://www.linkedin.com/in/kmilaninia/" class="text-blue-700 underline">Kaveh Milaninia</a> (PostDoc 2012) → Planobo<br>
+        <a href="https://www.linkedin.com/in/mohamed-elzeftawi-94643a6/" class="text-blue-700 underline">Mohamed Elzeftwani</a> (Ph.D. 2012) → Cadence<br>
+        <a href="https://www.linkedin.com/in/ashfaqueuddin/" class="text-blue-700 underline">Ashfaque Uddin</a> (Ph.D. 2012) → Intel<br>
+        <a href="https://www.linkedin.com/in/narasoborjigin/" class="text-blue-700 underline">Naraso Borjigin</a> (PostDoc 2010) → Huntsman<br>
+        <a href="https://www.linkedin.com/in/sawyer-mirage-84a2988/" class="text-blue-700 underline">Saeed Mirzaeian</a> (Ph.D. 2010) → Qualcomm<br>
+        <a href="https://www.linkedin.com/in/lewang2010/" class="text-blue-700 underline">Le Wang</a> (Ph.D. 2010 → Apple)<br>
+        <!-- Masters -->
+        <a href="https://www.linkedin.com/in/eric-hsieh-89769919b/" class="text-blue-700 underline">Eric Hsieh</a> (M.S. 2024) → Amazon<br>
+        <a href="#" class="text-blue-700 underline">Alex Nguyen-Le</a> (M.S. 2020)<br>
+        <a href="https://www.linkedin.com/in/sean-t-mccotter/" class="text-blue-700 underline">Sean McCotter</a> (M.S. 2019) → Senseeker<br>
+        <a href="https://www.linkedin.com/in/aksharjain/" class="text-blue-700 underline">Akshar Jain</a> (M.S. 2017)<br>
+        <a href="https://www.linkedin.com/in/rebecca-martin-a57950103/" class="text-blue-700 underline">Rebecca Martin (R.A)</a><br>
+        <a href="https://www.linkedin.com/in/starli2126/" class="text-blue-700 underline">Star Li</a> (M.S. 2012) → Intel<br>
+    </div>
+
+        <!-- Right Column -->
+        <div class="space-y-2">
+            <!-- undergrads-->
+            <a href="#" class="text-blue-700 underline">Xiankun Li</a> (B.S. 2024) <br>
+            <a href="https://www.linkedin.com/in/aaron-p-peng/" class="text-blue-700 underline">Aaron Peng</a> (B.S. 2021) → Ph.D. @ University of Chicago<br>
+            <a href="https://www.linkedin.com/in/michellechiu13/" class="text-blue-700 underline">Michell Chiu</a> (B.S. 2019) → Ph.D. @ University of Chicago<br>
+            <a href="#" class="text-blue-700 underline">Antonio Labaro</a> (B.S. 2019)<br>
+            <a href="https://www.linkedin.com/in/ryan-kaveh-b9684854/" class="text-blue-700 underline">Ryan Kaveh</a> (B.S. 2017) → Ph.D. @ UC Berkeley<br>
+            <a href="https://www.linkedin.com/in/wyattrodgers/" class="text-blue-700 underline">Wyatt Rodgers</a> (B.S. 2014)<br>
+            <a href="#" class="text-blue-700 underline">Kathryn Barron</a><br>
+            <a href="#" class="text-blue-700 underline">Bassel Ihsan</a> (B.S. 2012)<br>
+            <a href="#" class="text-blue-700 underline">Laurel Hopkins</a> (B.S. 2012) → Ph.D. @ Oregon State University<br>
+            <a href="#" class="text-blue-700 underline">Taishi Kato</a> (B.S. 2012) → M.S. @ UC Los Angeles<br>
+            <a href="#" class="text-blue-700 underline">Krisna Bhargava</a> (B.S. 2010)<br>
+            <a href="#" class="text-blue-700 underline">Niloufar Pourian</a> (B.S. 2010)<br>
+            <a href="#" class="text-blue-700 underline">Justin Chang</a> (B.S. 2010)<br>
+
+
+        </div>
+</section>
+        
+        <!-- Contact Section / Footer -->
+    <footer id="contact" class="py-20 px-8 bg-footer-bg text-white border-t-4 border-accent">
+        <div class="container mx-auto text-center">
+            <h2 class="text-2xl font-bold mb-4">Contact Us</h2>
+            <p class="text-gray-300 max-w-md mx-auto mb-8">
+                We are located at the University of California, Santa Barbara. Feel free to reach out for collaboration or inquiries.
+            </p>
+            <div class="flex flex-col md:flex-row items-center justify-center gap-8 mb-12">
+                <img src="Images/UC_Santa_Barbara_Wordmark_Navy.png" alt="UCSB Campus" class="w-1/3 rounded-lg shadow-lg mx-auto">
+                <img src="Images/UC-Santa-Barbara-seal-2 Color RGB.png" alt="UCSB Logo" class="w-1/3 rounded-lg shadow-lg mx-auto">
+            </div>
+            <div class="flex justify-center space-x-4">
+                <a href="mailto:contact@bcn.ucsb.edu" class="bg-accent text-white px-6 py-3 rounded-md font-semibold hover:bg-accent-dark transition-colors">
+                    Email the Group
+                </a>
+            </div>
+            <p class="text-sm text-gray-400 mt-16">&copy; <script>document.write(new Date().getFullYear())</script> Biomimetic Circuits & Nanosystems Group. All rights reserved.</p>
+        </div>
+    </footer>
     </div>
 </body>
 </html>
