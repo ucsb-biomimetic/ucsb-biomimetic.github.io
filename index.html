@@ -668,46 +668,64 @@ document.addEventListener('DOMContentLoaded', () => {
     <h2 class="text-4xl font-semibold text-center mb-12 text-gray-900">Alumni</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-gray-800">
 
-      <!-- Left Column -->
-    <div class="space-y-2">
-        <!-- PhD and docs -->
-        <a href="" class="text-blue-700 underline">Jahyun Koo</a> (Postdoc 2023) → Sejong University<br> 
-        <a href="" class="text-blue-700 underline">David McCarthy</a> (Postdoc 2023) → Qualcomm<br> 
-        <a href="https://www.linkedin.com/in/william-o-w/" class="text-blue-700 underline">William Whitehead</a> (Ph.D. 2025) → NXP<br>
-        <a href="https://www.linkedin.com/in/mitrasaeedi/" class="text-blue-700 underline">Mitra Saedi</a> (Ph.D. 2021) → Semtech<br>
-        <a href="https://www.linkedin.com/in/profileprajaktakulkarni/" class="text-blue-700 underline">Prajakta Kulkarni</a> (PostDoc 2020) → SciKare<br>
-        <a href="https://www.linkedin.com/in/aksharjain/" class="text-blue-700 underline">Akshar Jain</a> (Ph.D. 2020) → Intel<br>
-        <a href="https://www.linkedin.com/in/aaronjbluestone/" class="text-blue-700 underline">Aaron Bluestone</a> (Ph.D. 2018) → HRL<br>
-        <a href="https://www.linkedin.com/in/chin-hsuan-jennifer-chen-99a59623/" class="text-blue-700 underline">Chin-Hsuan Chen</a> (Ph.D. 2017) → Apple<br>
-        <a href="https://www.linkedin.com/in/justin-rofeh-94148392/" class="text-blue-700 underline">Justin Rofeh</a> (Ph.D. 2017) → Laxmi Therapeutic<br>
-        <a href="https://www.linkedin.com/in/avantika-sodhi-317b3217/" class="text-blue-700 underline">Avantika Sodhi</a> (Ph.D. 2017)  → HRL<br>
-        <a href="https://www.linkedin.com/in/melika-payvand-a9897625/" class="text-blue-700 underline">Melika Payvand</a> (Ph.D. 2017) → Professor at ETH Zurich<br>
-        <a href="https://www.linkedin.com/in/danielle-morton-7b714956/" class="text-blue-700 underline">Danielle Morton</a> (Ph.D. 2016) → Apple<br>
-        <a href="https://www.linkedin.com/in/shahab-mortezaei-435838a4/" class="text-blue-700 underline">Shahab Mortezaei</a> (PostDoc 2015) → Atomwise<br>
-        <a href="https://www.linkedin.com/in/matthew-pevarnik-466737a5/" class="text-blue-700 underline">Matthew Pevarnik</a> (PostDoc 2015) → Prof at Regent University<br>
-        <a href="https://www.linkedin.com/in/weibin-cui-ba823043/" class="text-blue-700 underline">Weibin Cui</a> (PostDoc 2015)<br>
-        <a href="https://www.linkedin.com/in/sukru-yemenicioglu-42a2973b/" class="text-blue-700 underline">Sukru Yemenucioglu</a> (Ph.D. 2015)  → Apple<br>
-        <a href="https://www.linkedin.com/in/ellie-corigliano-ph-d-6992517/" class="text-blue-700 underline">Ellie Corigliano</a> (PostDoc 2013) → Merck<br>
-        <a href="https://www.linkedin.com/in/michael-j-isaacman-ph-d-828a83a7/" class="text-blue-700 underline">Micheal Isaacman</a> (Ph.D. 2013) → PHD Biosciences<br>
-        <a href="https://www.linkedin.com/in/luis-chen-8b3aab29/" class="text-blue-700 underline">Luis Chen</a> (Ph.D. 2012) → Qualcomm<br>
-        <a href="https://www.linkedin.com/in/kmilaninia/" class="text-blue-700 underline">Kaveh Milaninia</a> (PostDoc 2012) → Planobo<br>
-        <a href="https://www.linkedin.com/in/mohamed-elzeftawi-94643a6/" class="text-blue-700 underline">Mohamed Elzeftwani</a> (Ph.D. 2012) → Cadence<br>
-        <a href="https://www.linkedin.com/in/ashfaqueuddin/" class="text-blue-700 underline">Ashfaque Uddin</a> (Ph.D. 2012) → Intel<br>
-        <a href="https://www.linkedin.com/in/narasoborjigin/" class="text-blue-700 underline">Naraso Borjigin</a> (PostDoc 2010) → Huntsman<br>
-        <a href="https://www.linkedin.com/in/sawyer-mirage-84a2988/" class="text-blue-700 underline">Saeed Mirzaeian</a> (Ph.D. 2010) → Qualcomm<br>
-        <a href="https://www.linkedin.com/in/lewang2010/" class="text-blue-700 underline">Le Wang</a> (Ph.D. 2010) → Apple<br>
-        <!-- Masters -->
-        <a href="https://www.linkedin.com/in/eric-hsieh-89769919b/" class="text-blue-700 underline">Eric Hsieh</a> (M.S. 2024) → Amazon<br>
-        <a href="https://www.linkedin.com/in/anguyenle/" class="text-blue-700 underline">Alex Nguyen-Le</a> (M.S. 2020) → Ph.D. at University of Pennsylvania<br>
-        <a href="https://www.linkedin.com/in/sarah-grundeen-85b133161/" class="text-blue-700 underline">Sarah Grundeen</a> (M.S 2019) → Northrop Grumman<br>
-        <a href="https://www.linkedin.com/in/sean-t-mccotter/" class="text-blue-700 underline">Sean McCotter</a> (M.S. 2019) → Senseeker<br>
+        <!-- Left Column -->
+        <div class="space-y-2">
+            <div class="flex items-center justify-center my-3">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <span class="mx-3 text-gray-600 text-sm font-semibold tracking-wide uppercase">Postdoc / PhD</span>
+                <div class="flex-grow border-t border-gray-300"></div>
+            </div>
+            <!-- PhD and docs -->
+            <a href="" class="text-blue-700 underline">Jahyun Koo</a> (Postdoc 2023) → Sejong University<br> 
+            <a href="" class="text-blue-700 underline">David McCarthy</a> (Postdoc 2023) → Qualcomm<br> 
+            <a href="https://www.linkedin.com/in/william-o-w/" class="text-blue-700 underline">William Whitehead</a> (Ph.D. 2025) → NXP<br>
+            <a href="https://www.linkedin.com/in/mitrasaeedi/" class="text-blue-700 underline">Mitra Saedi</a> (Ph.D. 2021) → Semtech<br>
+            <a href="https://www.linkedin.com/in/profileprajaktakulkarni/" class="text-blue-700 underline">Prajakta Kulkarni</a> (PostDoc 2020) → SciKare<br>
+            <a href="https://www.linkedin.com/in/aksharjain/" class="text-blue-700 underline">Akshar Jain</a> (Ph.D. 2020) → Intel<br>
+            <a href="https://www.linkedin.com/in/aaronjbluestone/" class="text-blue-700 underline">Aaron Bluestone</a> (Ph.D. 2018) → HRL<br>
+            <a href="https://www.linkedin.com/in/chin-hsuan-jennifer-chen-99a59623/" class="text-blue-700 underline">Chin-Hsuan Chen</a> (Ph.D. 2017) → Apple<br>
+            <a href="https://www.linkedin.com/in/justin-rofeh-94148392/" class="text-blue-700 underline">Justin Rofeh</a> (Ph.D. 2017) → Laxmi Therapeutic<br>
+            <a href="https://www.linkedin.com/in/avantika-sodhi-317b3217/" class="text-blue-700 underline">Avantika Sodhi</a> (Ph.D. 2017)  → HRL<br>
+            <a href="https://www.linkedin.com/in/melika-payvand-a9897625/" class="text-blue-700 underline">Melika Payvand</a> (Ph.D. 2017) → Professor at ETH Zurich<br>
+            <a href="https://www.linkedin.com/in/danielle-morton-7b714956/" class="text-blue-700 underline">Danielle Morton</a> (Ph.D. 2016) → Apple<br>
+            <a href="https://www.linkedin.com/in/shahab-mortezaei-435838a4/" class="text-blue-700 underline">Shahab Mortezaei</a> (PostDoc 2015) → Atomwise<br>
+            <a href="https://www.linkedin.com/in/matthew-pevarnik-466737a5/" class="text-blue-700 underline">Matthew Pevarnik</a> (PostDoc 2015) → Prof at Regent University<br>
+            <a href="https://www.linkedin.com/in/weibin-cui-ba823043/" class="text-blue-700 underline">Weibin Cui</a> (PostDoc 2015)<br>
+            <a href="https://www.linkedin.com/in/sukru-yemenicioglu-42a2973b/" class="text-blue-700 underline">Sukru Yemenucioglu</a> (Ph.D. 2015)  → Apple<br>
+            <a href="https://www.linkedin.com/in/ellie-corigliano-ph-d-6992517/" class="text-blue-700 underline">Ellie Corigliano</a> (PostDoc 2013) → Merck<br>
+            <a href="https://www.linkedin.com/in/michael-j-isaacman-ph-d-828a83a7/" class="text-blue-700 underline">Micheal Isaacman</a> (Ph.D. 2013) → PHD Biosciences<br>
+            <a href="https://www.linkedin.com/in/luis-chen-8b3aab29/" class="text-blue-700 underline">Luis Chen</a> (Ph.D. 2012) → Qualcomm<br>
+            <a href="https://www.linkedin.com/in/kmilaninia/" class="text-blue-700 underline">Kaveh Milaninia</a> (PostDoc 2012) → Planobo<br>
+            <a href="https://www.linkedin.com/in/mohamed-elzeftawi-94643a6/" class="text-blue-700 underline">Mohamed Elzeftwani</a> (Ph.D. 2012) → Cadence<br>
+            <a href="https://www.linkedin.com/in/ashfaqueuddin/" class="text-blue-700 underline">Ashfaque Uddin</a> (Ph.D. 2012) → Intel<br>
+            <a href="https://www.linkedin.com/in/narasoborjigin/" class="text-blue-700 underline">Naraso Borjigin</a> (PostDoc 2010) → Huntsman<br>
+            <a href="https://www.linkedin.com/in/sawyer-mirage-84a2988/" class="text-blue-700 underline">Saeed Mirzaeian</a> (Ph.D. 2010) → Qualcomm<br>
+            <a href="https://www.linkedin.com/in/lewang2010/" class="text-blue-700 underline">Le Wang</a> (Ph.D. 2010) → Apple<br>
 
-        <a href="https://www.linkedin.com/in/rebecca-martin-a57950103/" class="text-blue-700 underline">Rebecca Martin</a><br>
-        <a href="https://www.linkedin.com/in/starli2126/" class="text-blue-700 underline">Star Li</a> (M.S. 2012) → Intel<br>
-    </div>
+                <!-- Divider: Masters -->
+            <div class="flex items-center justify-center my-3">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <span class="mx-3 text-gray-600 text-sm font-semibold tracking-wide uppercase">Masters</span>
+                <div class="flex-grow border-t border-gray-300"></div>
+            </div>      
+            <!-- Masters -->
+            <a href="https://www.linkedin.com/in/eric-hsieh-89769919b/" class="text-blue-700 underline">Eric Hsieh</a> (M.S. 2024) → Amazon<br>
+            <a href="https://www.linkedin.com/in/anguyenle/" class="text-blue-700 underline">Alex Nguyen-Le</a> (M.S. 2020) → Ph.D. at University of Pennsylvania<br>
+            <a href="https://www.linkedin.com/in/sarah-grundeen-85b133161/" class="text-blue-700 underline">Sarah Grundeen</a> (M.S 2019) → Northrop Grumman<br>
+            <a href="https://www.linkedin.com/in/sean-t-mccotter/" class="text-blue-700 underline">Sean McCotter</a> (M.S. 2019) → Senseeker<br>
+
+            <a href="https://www.linkedin.com/in/rebecca-martin-a57950103/" class="text-blue-700 underline">Rebecca Martin</a><br>
+            <a href="https://www.linkedin.com/in/starli2126/" class="text-blue-700 underline">Star Li</a> (M.S. 2012) → Intel<br>
+        </div>
 
         <!-- Right Column -->
         <div class="space-y-2">
+            <!-- Divider: Undergrads -->
+            <div class="flex items-center justify-center my-3">
+                <div class="flex-grow border-t border-gray-300"></div>
+                <span class="mx-3 text-gray-600 text-sm font-semibold tracking-wide uppercase">Undergrads</span>
+                <div class="flex-grow border-t border-gray-300"></div>
+            </div>
             <!-- undergrads-->
             <a href="#" class="text-blue-700 underline">Xiankun Li</a> (B.S. 2024) <br>
             <a href="https://www.linkedin.com/in/aaron-p-peng/" class="text-blue-700 underline">Aaron Peng</a> (B.S. 2021) → Ph.D. at University of Chicago<br>
@@ -722,8 +740,6 @@ document.addEventListener('DOMContentLoaded', () => {
             <a href="#" class="text-blue-700 underline">Krisna Bhargava</a> (B.S. 2010)<br>
             <a href="#" class="text-blue-700 underline">Niloufar Pourian</a> (B.S. 2010)<br>
             <a href="#" class="text-blue-700 underline">Justin Chang</a> (B.S. 2010)<br>
-
-
         </div>
 </section>
         
@@ -739,7 +755,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="Images/UC-Santa-Barbara-seal-2 Color RGB.png" alt="UCSB Logo" class="w-1/3 rounded-lg shadow-lg mx-auto">
             </div>
             <div class="flex justify-center space-x-4">
-                <a href="mailto:contact@bcn.ucsb.edu" class="bg-accent text-white px-6 py-3 rounded-md font-semibold hover:bg-accent-dark transition-colors">
+                <a href="mailto:lusthe@ucsb.edu" class="bg-accent text-white px-6 py-3 rounded-md font-semibold hover:bg-accent-dark transition-colors">
                     Email the Group
                 </a>
             </div>
